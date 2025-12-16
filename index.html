@@ -32,9 +32,8 @@
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
 body {
-  font-family: 'Roboto', sans-serif; /* Giữ Roboto cho nội dung chính */
+  font-family: 'Roboto', sans-serif;
   background-color: var(--bg-darker);
-  /* Tạo nền gradient không gian */
   background-image: 
     radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
@@ -44,8 +43,6 @@ body {
 }
 
 h1, h2, h3 {
-  /* Sửa lỗi font: Ưu tiên Be Vietnam Pro cho ký tự tiếng Việt, 
-     sau đó mới đến Orbitron để giữ style tech cho chữ không dấu */
   font-family: 'Be Vietnam Pro', 'Orbitron', sans-serif; 
   letter-spacing: 1px;
 }
@@ -59,7 +56,7 @@ header {
   width: 100%;
   padding: 15px 5%;
   background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   justify-content: space-between;
@@ -82,31 +79,6 @@ header {
 
 .logo i { font-size: 28px; }
 
-.tools {
-  display: flex;
-  gap: 15px;
-}
-
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass);
-  border: var(--border-glow);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: 0.3s;
-  color: var(--text-main);
-}
-
-.icon-btn:hover {
-  background: var(--accent-primary);
-  color: var(--bg-darker);
-  box-shadow: 0 0 15px var(--accent-primary);
-}
-
 /* =======================
    MARQUEE (THÔNG BÁO)
 ======================= */
@@ -123,7 +95,6 @@ header {
   display: inline-block;
   animation: scroll 20s linear infinite;
   color: var(--accent-primary);
-  /* Chuyển font để khắc phục lỗi hiển thị tiếng Việt */
   font-family: 'Be Vietnam Pro', sans-serif; 
   font-size: 14px;
   font-weight: 500;
@@ -167,12 +138,20 @@ header {
 }
 
 /* =======================
-   GRID SYSTEM
+   GRID SYSTEM (Đã chỉnh sửa cho animation)
 ======================= */
 .grid {
   display: grid;
   gap: 25px;
   margin-bottom: 60px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Class mới để ẩn/hiện Grid mượt mà */
+.grid.is-hiding {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
 }
 
 /* 4 CỘT CHO DESKTOP */
@@ -210,7 +189,6 @@ header {
   z-index: 10;
 }
 
-/* Hiệu ứng hover card */
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-primary);
@@ -224,7 +202,6 @@ header {
   color: var(--bg-darker);
 }
 
-/* Icon trong card */
 .icon-box {
   width: 50px;
   height: 50px;
@@ -252,7 +229,6 @@ header {
   line-height: 1.5;
 }
 
-/* Button trong card */
 .btn-action {
   width: 100%;
   padding: 10px;
@@ -275,7 +251,77 @@ header {
 }
 
 /* =======================
-   ĐẶC BIỆT: TRANH TÀI
+   CHI TIẾT NỘI DUNG (Đã chỉnh sửa cho animation)
+======================= */
+#theory-content-container {
+  display: block; /* Luôn là block để dễ quản lý animation */
+  opacity: 0;
+  pointer-events: none;
+  height: 0; /* Chiều cao ban đầu bằng 0 để không chiếm không gian */
+  overflow: hidden;
+  margin-bottom: 60px;
+  transition: opacity 0.5s ease 0.3s, height 0s linear 0.5s;
+}
+
+#theory-content-container.is-showing {
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+    overflow: visible;
+    transition: opacity 0.5s ease 0.3s, height 0s; /* Thay đổi ngay lập tức */
+}
+
+.detail-box {
+  background: var(--card-bg);
+  border: 2px solid var(--accent-secondary);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(112, 0, 255, 0.2);
+  backdrop-filter: blur(10px);
+  /* Hiệu ứng trượt xuống */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s ease 0.3s, opacity 0.5s ease 0.3s;
+}
+
+#theory-content-container.is-showing .detail-box {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.detail-box h3 {
+  font-size: 32px;
+  color: var(--accent-secondary);
+  margin-top: 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 15px;
+}
+
+/* Nút quay lại */
+.btn-back {
+  background: transparent;
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.btn-back:hover {
+  background: var(--accent-primary);
+  color: var(--bg-darker);
+  box-shadow: 0 0 15px var(--accent-primary);
+}
+
+/* =======================
+   CÁC PHẦN KHÁC (GIỮ NGUYÊN)
 ======================= */
 .contest-card {
   border-top: 3px solid var(--accent-secondary);
@@ -293,9 +339,6 @@ header {
   box-shadow: 0 0 15px rgba(112, 0, 255, 0.4);
 }
 
-/* =======================
-   DISCORD SECTION
-======================= */
 .discord-banner {
   background: linear-gradient(135deg, #5865F2, #404EED);
   border-radius: 20px;
@@ -340,9 +383,6 @@ header {
   background: #f0f0f0;
 }
 
-/* =======================
-   FOOTER
-======================= */
 footer {
   text-align: center;
   padding: 40px;
@@ -350,165 +390,131 @@ footer {
   font-size: 13px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-
-/* =======================
-   HIỆU ỨNG MỞ NỘI DUNG (THEORY MODAL)
-======================= */
-.content-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); 
-  backdrop-filter: blur(8px); 
-  z-index: 2000;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.content-modal.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-content-wrapper {
-  background: var(--bg-darker); 
-  border: 2px solid var(--accent-secondary);
-  border-radius: 15px;
-  max-width: 850px; 
-  width: 90%;
-  margin-top: 50px;
-  padding: 40px;
-  box-shadow: 0 0 40px rgba(112, 0, 255, 0.4); 
-  transform: translateY(-120%); 
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-  position: relative;
-}
-
-.content-modal.active .modal-content-wrapper {
-  transform: translateY(10vh); 
-}
-
-.modal-content-wrapper h3 {
-  font-size: 32px;
-  color: var(--accent-secondary);
-  text-shadow: 0 0 10px rgba(112, 0, 255, 0.6);
-  margin-bottom: 20px;
-  border-bottom: 2px solid rgba(112, 0, 255, 0.2);
-  padding-bottom: 10px;
-}
-
-.modal-content-wrapper p {
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.modal-content-wrapper .dev-message {
-  color: var(--accent-primary);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 20px;
-  text-align: center;
-  margin-top: 30px;
-  padding: 30px;
-  background: rgba(0, 242, 255, 0.1);
-  border: 1px solid var(--accent-primary);
-  border-radius: 10px;
-  text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
-}
-
-/* Hiệu ứng dịch chuyển thẻ khi mở modal (TỐI ƯU THEO YÊU CẦU) */
-.grid-4.content-open .card {
-  transition: transform 0.5s ease-in, opacity 0.5s ease-in;
-}
-.grid-4.content-open .card:not(.active-card) {
-  opacity: 0;
-  transform: translateX(100vw); 
-  pointer-events: none;
-}
-
-.grid-4.content-open .active-card {
-  opacity: 0; 
-  pointer-events: none;
-}
 </style>
 
 <script>
-// Định nghĩa nội dung chi tiết cho từng mục
+// NỘI DUNG CHI TIẾT (Giữ nguyên)
 const theoryContent = {
   'uu-diem': {
-    title: 'Ưu điểm của AI',
-    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. <i class="fa-solid fa-code-branch"></i></div>'
+    title: 'Ưu điểm của AI trong Giáo dục',
+    content: `
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 25px; display: flex; align-items: start; gap: 20px;">
+            <div style="min-width: 40px; height: 40px; background: rgba(0, 242, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-primary); font-size: 20px;">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+                <strong style="color: var(--accent-primary); font-size: 1.2em; display:block; margin-bottom: 5px;">Giải đáp thắc mắc học tập</strong>
+                <p style="color: var(--text-main); line-height: 1.6;">Giúp học sinh giải đáp những thắc mắc trong học tập. Tăng cường sự thông suốt kiến thức của học sinh một cách nhanh chóng và hiệu quả.</p>
+            </div>
+        </li>
+
+        <li style="margin-bottom: 25px; display: flex; align-items: start; gap: 20px;">
+            <div style="min-width: 40px; height: 40px; background: rgba(0, 242, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-primary); font-size: 20px;">
+                <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <div>
+                <strong style="color: var(--accent-primary); font-size: 1.2em; display:block; margin-bottom: 5px;">AI Ứng dụng (Qanda)</strong>
+                <p style="color: var(--text-main); line-height: 1.6;">Giúp giải bài toán một cách dễ hiểu chỉ cần một lần chụp câu hỏi đơn giản.</p>
+            </div>
+        </li>
+
+        <li style="margin-bottom: 25px; display: flex; align-items: start; gap: 20px;">
+            <div style="min-width: 40px; height: 40px; background: rgba(0, 242, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-primary); font-size: 20px;">
+                <i class="fa-solid fa-house-laptop"></i>
+            </div>
+            <div>
+                <strong style="color: var(--accent-primary); font-size: 1.2em; display:block; margin-bottom: 5px;">Học hỏi tại nhà</strong>
+                <p style="color: var(--text-main); line-height: 1.6;">Tạo cơ hội học hỏi, tìm hiểu tại nhà. Chỉ cần vài câu lệnh đơn thuần, với trí tuệ siêu việt cùng khả năng truy cập mọi nền tảng, AI giúp cung cấp những tri thức mà chúng ta cần một cách nhanh chóng, dễ dàng.</p>
+            </div>
+        </li>
+
+        <li style="margin-bottom: 10px; display: flex; align-items: start; gap: 20px;">
+            <div style="min-width: 40px; height: 40px; background: rgba(0, 242, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-primary); font-size: 20px;">
+                <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <div>
+                <strong style="color: var(--accent-primary); font-size: 1.2em; display:block; margin-bottom: 5px;">Ngắn gọn & Trọng tâm</strong>
+                <p style="color: var(--text-main); line-height: 1.6;">AI đưa ra câu trả lời ngắn gọn, đi thẳng trọng tâm, không phải tìm đọc lan man trên những trang thông tin mà Google tìm kiếm đề xuất.</p>
+            </div>
+        </li>
+      </ul>
+    `
   },
   'han-che': {
     title: 'Hạn chế và Giới hạn',
-    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. <i class="fa-solid fa-code-branch"></i></div>'
+    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. </div>'
   },
   'kinh-nghiem': {
     title: 'Kinh nghiệm Training Model',
-    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. <i class="fa-solid fa-code-branch"></i></div>'
+    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. </div>'
   },
   'meo-vat': {
     title: 'Tips & Tricks tối ưu Workflow',
-    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. <i class="fa-solid fa-code-branch"></i></div>'
+    content: '<div class="dev-message"><i class="fa-solid fa-code-branch"></i> 🚧 **TÍNH NĂNG ĐANG PHÁT TRIỂN.** Vui lòng quay lại sau. </div>'
   }
 };
 
+// HÀM MỞ NỘI DUNG (Đã cập nhật animation)
 function openContent(e) {
   const contentId = e.dataset.content;
-  const contentData = theoryContent[contentId];
-  const modal = document.getElementById('theoryModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalBody = document.getElementById('modalBody');
-  const gridContainer = document.getElementById('theoryGrid');
+  const data = theoryContent[contentId];
   
-  if (!contentData) {
-    alert("Nội dung không tìm thấy!");
+  if (!data) {
+    alert("Nội dung chưa cập nhật!");
     return;
   }
 
-  // 1. Dịch chuyển các thẻ khác (effect)
-  const allCards = gridContainer.querySelectorAll('.card');
-  allCards.forEach(card => card.classList.remove('active-card'));
-  e.closest('.card').classList.add('active-card');
-  gridContainer.classList.add('content-open');
-
-
-  // 2. Cập nhật và hiển thị modal
-  modalTitle.textContent = contentData.title;
-  modalBody.innerHTML = contentData.content;
+  const grid = document.getElementById('theoryGrid');
+  const container = document.getElementById('theory-content-container');
+  const title = document.getElementById('detail-title');
+  const body = document.getElementById('detail-body');
   
-  // Dùng setTimeout để modal hiện sau khi các thẻ đã bắt đầu dịch chuyển
+  // 1. Điền dữ liệu trước
+  title.innerHTML = data.title;
+  body.innerHTML = data.content;
+
+  // 2. Hiệu ứng: Ẩn Grid (Kích hoạt CSS transition: opacity & transform)
+  grid.classList.add('is-hiding');
+  
+  // 3. Chờ Grid ẩn xong (500ms) rồi hiện Content
   setTimeout(() => {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Ngăn cuộn trang
-  }, 300); 
+    // Ẩn Grid hoàn toàn bằng display: none sau khi animation kết thúc
+    grid.style.display = 'none';
+
+    // Hiện Content Container (Kích hoạt CSS transition)
+    container.classList.add('is-showing');
+    
+    // Cuộn nhẹ lên đầu vùng hiển thị để người dùng thấy tiêu đề
+    setTimeout(() => {
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100); 
+  }, 500); // Đợi 500ms (thời gian transition của grid)
 }
 
+// HÀM ĐÓNG NỘI DUNG (Đã cập nhật animation)
 function closeContent() {
-  const modal = document.getElementById('theoryModal');
-  const gridContainer = document.getElementById('theoryGrid');
+  const grid = document.getElementById('theoryGrid');
+  const container = document.getElementById('theory-content-container');
+
+  // 1. Ẩn Content Container (Kích hoạt CSS transition)
+  container.classList.remove('is-showing');
   
-  // 1. Ẩn modal (bao gồm cả hiệu ứng trượt lên)
-  modal.classList.remove('active');
-  document.body.style.overflow = ''; // Cho phép cuộn trang lại
-  
-  // 2. Đợi modal ẩn xong rồi đưa các thẻ về vị trí
+  // 2. Chờ Content ẩn xong (500ms) rồi hiện Grid
   setTimeout(() => {
-    gridContainer.classList.remove('content-open');
-    const allCards = gridContainer.querySelectorAll('.card');
-    allCards.forEach(card => card.classList.remove('active-card'));
-  }, 600); // 600ms = thời gian transition của modal transform/opacity
+    // Hiện Grid bằng display: grid trước khi gỡ class ẩn
+    grid.style.display = 'grid'; 
+
+    // Bỏ class ẩn để kích hoạt animation hiện ra
+    grid.classList.remove('is-hiding');
+    
+    // Cuộn nhẹ lên đầu grid
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 500); // Đợi 500ms (thời gian transition của content)
 }
 
-// Hàm cũ, giữ lại cho các nút khác
 function openDrive(e) {
   const link = e.dataset.link;
-  // Hiệu ứng click nhẹ
   e.style.transform = "scale(0.95)";
   setTimeout(() => e.style.transform = "scale(1)", 150);
 
@@ -585,6 +591,16 @@ function openDrive(e) {
     </div>
   </div>
 
+  <div id="theory-content-container">
+    <div class="detail-box">
+      <button class="btn-back" onclick="closeContent()">
+        <i class="fa-solid fa-arrow-left"></i> Quay lại
+      </button>
+      <h3 id="detail-title"></h3>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
   <div class="section-header">
     <h2>Tranh tài</h2>
     <p>Thử thách bản thân qua các cuộc thi thực tế.</p>
@@ -633,13 +649,6 @@ function openDrive(e) {
   <p>&copy; 2024 AMF - A.I Mastering Forum. All rights reserved.</p>
   <p style="margin-top:5px; opacity: 0.5;">Designed for the Future.</p>
 </footer>
-
-<div id="theoryModal" class="content-modal" onclick="closeContent()">
-  <div class="modal-content-wrapper" onclick="event.stopPropagation()">
-    <h3 id="modalTitle"></h3>
-    <div id="modalBody"></div>
-  </div>
-</div>
 
 </body>
 </html>
