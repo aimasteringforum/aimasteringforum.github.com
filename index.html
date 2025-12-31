@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AMF - A.I Mastering Forum</title>
+<title>AMF - AI Mastering Forum</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,24 +12,21 @@
 
 <style>
 /* =======================
-   CẤU HÌNH MÀU SẮC (THEME AI)
+   THEME CONFIG
 ======================= */
 :root {
   --bg-dark: #0f172a;
   --bg-darker: #020617;
-  --accent-primary: #00f2ff; /* Cyan Neon */
-  --accent-secondary: #7000ff; /* Purple Neon */
+  --accent-primary: #00f2ff;
+  --accent-secondary: #7000ff;
   --text-main: #e2e8f0;
   --text-muted: #94a3b8;
-  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-bg: rgba(30, 41, 59, 0.6);
   --border-glow: 1px solid rgba(255, 255, 255, 0.1);
-  --discord-color: #5865F2;
-  --tiktok-color: #000000;
-  --facebook-color: #1877F2;
 }
 
 /* =======================
-   RESET & GLOBAL
+   GLOBAL & RESET
 ======================= */
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
@@ -37,463 +34,429 @@ body {
   font-family: 'Roboto', sans-serif; 
   background-color: var(--bg-darker);
   background-image: 
-    radial-gradient(circle at 15% 25%, rgba(112, 0, 255, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 85% 75%, rgba(0, 242, 255, 0.08) 0%, transparent 40%);
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px; 
   color: var(--text-main);
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-h1, h2, h3 {
-  font-family: 'Be Vietnam Pro', 'Orbitron', sans-serif; 
-  letter-spacing: 1px;
-}
-
+h1, h2, h3, h4 { font-family: 'Be Vietnam Pro', 'Orbitron', sans-serif; }
 a { text-decoration: none; color: inherit; }
 
 /* =======================
-   HEADER
+   HEADER MỚI
 ======================= */
 header {
   width: 100%;
-  padding: 10px 5%;
-  background: rgba(15, 23, 42, 0.9);
-  backdrop-filter: blur(8px); 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  justify-content: space-between;
+  padding: 10px 30px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid var(--accent-primary);
+  display: grid;
+  grid-template-columns: 100px 1fr 100px; /* Logo - Title - Empty/Icon */
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--accent-primary);
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .school-logo {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
-    transition: transform 0.3s;
-    will-change: transform;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
 }
 
-.school-logo:hover {
-    transform: scale(1.05);
-}
-
-/* =======================
-   MARQUEE
-======================= */
-.marquee-container {
-  background: var(--bg-darker);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 10px 0;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-}
-
-.marquee-content {
-  display: inline-block;
-  animation: scroll 25s linear infinite;
-  color: var(--accent-primary);
-  font-family: 'Be Vietnam Pro', sans-serif; 
-  font-size: 14px;
-  font-weight: 500;
-  will-change: transform;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
-}
-
-/* =======================
-   CONTAINER CHÍNH
-======================= */
-.main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.section-header {
-  margin-bottom: 30px;
-  border-left: 4px solid var(--accent-secondary);
-  padding-left: 15px;
-}
-
-.section-header h2 {
-  font-size: 28px;
-  color: #fff;
-}
-
-.section-header p {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* =======================
-   GRID SYSTEM
-======================= */
-.grid {
-  display: grid;
-  gap: 25px;
-  margin-bottom: 60px;
-}
-
-@media (min-width: 992px) {
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-community { grid-template-columns: 1fr; }
-}
-
-@media (min-width: 600px) and (max-width: 991px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .grid-2 { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 599px) {
-  .grid-4, .grid-2 { grid-template-columns: 1fr; }
-}
-
-/* =======================
-   CARD DESIGN
-======================= */
-.card {
-  background: var(--card-bg);
-  border: var(--border-glow);
-  border-radius: 16px;
-  padding: 25px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.header-center {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  backdrop-filter: blur(5px);
-  z-index: 10;
-  will-change: transform;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-color: rgba(0, 242, 255, 0.3); 
-}
-
-.icon-box {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--accent-primary);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 24px;
-  margin-bottom: 15px;
 }
 
-.card h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
-.card p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
-
-.btn-action {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--accent-primary);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--accent-primary);
+.main-title {
+  font-size: 28px;
   font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
+  color: var(--accent-primary);
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+.slogan {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 300;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+/* =======================
+   LAYOUT 3 CỘT
+======================= */
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px; 
+  gap: 20px;
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .main-wrapper { grid-template-columns: 1fr 1fr; }
+  .right-col { grid-column: span 2; }
+  header { display: flex; flex-direction: column; gap: 10px; text-align: center; }
+}
+@media (max-width: 768px) {
+  .main-wrapper { grid-template-columns: 1fr; }
+  .right-col { grid-column: span 1; }
+}
+
+/* =======================
+   PANEL COMPONENTS
+======================= */
+.panel-box {
+  background: var(--card-bg);
+  border: var(--border-glow);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.panel-header {
+  border-bottom: 2px solid var(--accent-secondary);
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #fff;
   text-transform: uppercase;
-  font-size: 12px;
   letter-spacing: 1px;
 }
 
-.btn-action:hover {
-  background: var(--accent-primary);
-  color: var(--bg-darker);
-}
-
-.contest-card { border-top: 3px solid var(--accent-secondary); }
-.contest-card .icon-box { color: var(--accent-secondary); }
-.contest-card .btn-action { border-color: var(--accent-secondary); color: var(--accent-secondary); }
-.contest-card .btn-action:hover { background: var(--accent-secondary); color: white; }
-
 /* =======================
-   COMMUNITY BANNERS
+   LEFT COL: LÝ THUYẾT
 ======================= */
-.community-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.social-banner {
-  border-radius: 20px;
-  padding: 30px 40px;
+.mini-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+
+.mini-card:hover {
+  background: rgba(0, 242, 255, 0.1);
+  border-color: var(--accent-primary);
+  transform: translateX(5px);
+}
+
+.mini-card i { color: var(--accent-primary); font-size: 18px; width: 20px; text-align: center; }
+.mini-card h4 { font-size: 14px; margin: 0; color: #fff; font-weight: 500; }
+
+.product-zone {
+  margin-top: 30px;
+  border-top: 1px dashed var(--text-muted);
+  padding-top: 15px;
+}
+
+/* =======================
+   CENTER COL: VISUAL & SOCIAL BANNERS
+======================= */
+.hero-visual {
+  height: 250px;
+  background: radial-gradient(circle, #1a1a2e 0%, #000 100%);
+  border-radius: 12px;
+  border: 1px solid var(--accent-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p4YzR6eHozYzR6eHozYzR6eHozYzR6eHozYzR6eHozeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LMcB8XwnpYQR3IgT3n/giphy.gif');
+  opacity: 0.2;
+  background-size: cover;
+}
+
+.hero-text { z-index: 2; text-align: center; }
+
+/* SOCIAL BANNERS (New Style) */
+.social-list { display: flex; flex-direction: column; gap: 15px; }
+
+.social-banner {
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  align-items: center;
   color: white;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.social-banner:hover {
-  transform: scale(1.01);
-}
+.social-banner:hover { transform: scale(1.02); }
 
-.banner-discord { background: linear-gradient(135deg, #5865F2, #404EED); box-shadow: 0 5px 20px rgba(88, 101, 242, 0.2); }
-.banner-tiktok { background: linear-gradient(135deg, #000000, #25F4EE, #FE2C55); box-shadow: 0 5px 20px rgba(254, 44, 85, 0.2); }
-.banner-facebook { background: linear-gradient(135deg, #1877F2, #0056b3); box-shadow: 0 5px 20px rgba(24, 119, 242, 0.2); }
+.sb-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+.sb-content p { font-size: 12px; opacity: 0.9; font-weight: 300; }
 
-.social-content h3 { font-size: 24px; margin-bottom: 8px; display: flex; align-items: center; gap: 15px; }
-
-.social-btn {
+.sb-btn {
   background: white;
-  padding: 10px 25px;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 15px;
-  transition: 0.2s;
-  display: inline-block;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.banner-discord .social-btn { color: #5865F2; }
-.banner-tiktok .social-btn { color: #000; }
-.banner-facebook .social-btn { color: #1877F2; }
+/* Specific Colors */
+.discord-bg { background: linear-gradient(90deg, #5865F2 0%, #7289da 100%); }
+.tiktok-bg { background: linear-gradient(90deg, #111 0%, #25F4EE 50%, #FE2C55 100%); }
+.fb-bg { background: linear-gradient(90deg, #1877F2 0%, #0056b3 100%); }
 
-.social-btn:hover { transform: translateY(-2px); background: #f0f0f0; }
+/* =======================
+   RIGHT COL: TIMELINE
+======================= */
+.timeline-list { list-style: none; }
+.timeline-item { display: flex; margin-bottom: 12px; font-size: 14px; }
+.month-label { width: 70px; font-weight: bold; color: var(--accent-secondary); }
+.plan-content { color: var(--text-muted); flex: 1; }
 
-footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 13px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.notification-box {
+  background: rgba(255, 165, 0, 0.05);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.notification-box a { color: #ffa500; text-decoration: underline; }
 
 /* =======================
    MODAL
 ======================= */
 .content-modal {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 2000;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9); z-index: 2000;
+  display: none; justify-content: center; align-items: center;
 }
-
-.content-modal.active { opacity: 1; pointer-events: auto; }
-
+.content-modal.active { display: flex; }
 .modal-content-wrapper {
-  background: var(--bg-darker); 
-  border: 1px solid var(--accent-secondary);
-  border-radius: 15px;
-  max-width: 850px; width: 90%; margin-top: 50px; padding: 40px;
-  transform: translateY(-50px); 
-  transition: transform 0.4s ease-out; 
-  position: relative;
-  max-height: 80vh; overflow-y: auto; 
+  background: #1e293b; border: 1px solid var(--accent-primary);
+  width: 90%; max-width: 600px; padding: 30px; border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
 }
 
-.content-modal.active .modal-content-wrapper { transform: translateY(0); }
-
-@media (max-width: 768px) {
-  body { background-image: none; background-color: var(--bg-darker); }
-  .card { backdrop-filter: none; background: #1e293b; }
-  header { backdrop-filter: none; background: #0f172a; }
-}
 </style>
 
 <script>
+// DỮ LIỆU NỘI DUNG (Khôi phục đủ 4 mục)
 const theoryContent = {
   'uu-diem': {
     title: 'Ưu điểm của AI trong Giáo dục',
-    content: `<ul style="list-style: none; padding: 0;"><li style="margin-bottom: 20px; display: flex; align-items: start; gap: 15px;"><i class="fa-solid fa-check-circle" style="color: var(--accent-primary); margin-top:5px;"></i><div><strong style="color: var(--accent-primary);">Tự học tại nhà hiệu quả:</strong><p style="margin-top:5px; color: var(--text-main);">AI giúp cung cấp những tri thức mà chúng ta cần một cách nhanh chóng, dễ dàng.</p></div></li><li style="margin-bottom: 20px; display: flex; align-items: start; gap: 15px;"><i class="fa-solid fa-bolt" style="color: var(--accent-primary); margin-top:5px;"></i><div><strong style="color: var(--accent-primary);">Thông tin cô đọng:</strong><p style="margin-top:5px; color: var(--text-main);">AI đưa ra câu trả lời ngắn gọn, đi thẳng trọng tâm.</p></div></li></ul>`
+    content: '1. Tự học tại nhà hiệu quả: AI giúp cung cấp tri thức nhanh chóng.\n2. Thông tin cô đọng: Đi thẳng vào trọng tâm vấn đề.'
   },
   'han-che': {
     title: 'Hạn chế & Rủi ro',
-    content: `<div style="background: rgba(255, 99, 71, 0.1); border-left: 4px solid #ff6347; padding: 20px; border-radius: 4px;"><h4 style="color: #ff6347; margin-bottom: 10px; font-size: 18px;"><i class="fa-solid fa-triangle-exclamation"></i> Lỗ hổng tri thức</h4><p style="color: var(--text-main); line-height: 1.6;">AI mang trí tuệ siêu việt tuy nhiên vẫn có thể cung cấp những tri thức chưa chính xác.</p></div>`
+    content: 'Lỗ hổng tri thức: AI có thể cung cấp thông tin sai lệch (Hallucination). Cần cảnh giác.'
   },
   'kinh-nghiem': {
     title: 'Kinh nghiệm cốt lõi',
-    content: `<ul style="list-style: none; padding: 0;"><li style="margin-bottom: 20px; display: flex; align-items: start; gap: 20px;"><div style="min-width: 40px; height: 40px; background: rgba(0, 255, 157, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00ff9d; font-size: 20px;"><i class="fa-solid fa-shield-virus"></i></div><div><strong style="color: #00ff9d; font-size: 1.2em; display:block; margin-bottom: 5px;">Phương pháp Double Check</strong><p style="color: var(--text-main); line-height: 1.6;">Hãy nhắc nhở bản thân xác thực, kiểm chứng từ nhiều nguồn đáng tin cậy.</p></div></li></ul>`
+    content: 'Phương pháp "Double Check": Luôn kiểm chứng lại thông tin từ AI bằng các nguồn chính thống khác.'
   },
   'meo-vat': {
-    title: 'Tips & Tricks ngẫu nhiên',
-    content: `<div style="display: grid; gap: 20px;"><div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong style="color: var(--accent-primary);">1. Role Prompting</strong><p>Hãy yêu cầu AI đóng vai chuyên gia.</p></div></div>`
+    title: 'Mẹo vặt (Tips)',
+    content: 'Role Prompting: Hãy yêu cầu AI đóng vai chuyên gia (giáo viên, nhà khoa học) để có câu trả lời sâu sắc hơn.'
   }
 };
 
-function openContent(e) {
-  const contentId = e.dataset.content;
-  const contentData = theoryContent[contentId];
-  const modal = document.getElementById('theoryModal');
-  document.getElementById('modalTitle').textContent = contentData.title;
-  document.getElementById('modalBody').innerHTML = contentData.content;
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden'; 
+function openContent(id) {
+  const data = theoryContent[id];
+  if(data) {
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalBody').innerText = data.content;
+    document.getElementById('theoryModal').classList.add('active');
+  }
 }
 
 function closeContent() {
-  const modal = document.getElementById('theoryModal');
-  modal.classList.remove('active');
-  document.body.style.overflow = ''; 
-}
-
-function openDrive(e) {
-  const link = e.dataset.link;
-  if (!link || link === "#") {
-    alert("🚀 Tính năng đang được cập nhật!");
-    return;
-  }
-  window.open(link, "_blank");
+  document.getElementById('theoryModal').classList.remove('active');
 }
 </script>
-
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
-    <i class="fa-solid fa-brain"></i>
-    <span>AMF <span style="font-weight:300; font-size: 16px; color:white;">FORUM</span></span>
-  </div>
   <div>
-    <img src="1000032560.png" alt="THPT Lê Thị Riêng" class="school-logo">
-  </div>
-</header>
-
-<div class="marquee-container">
-  <div class="marquee-content">🔔 website đang trong quá trình phát triển, hãy đợi thông báo nhé. 🔔</div>
-</div>
-
-<div class="main-container">
-
-  <div class="section-header">
-    <h2>Lí thuyết đúc kết</h2>
-    <p>Kiến thức nền tảng và chuyên sâu về trí tuệ nhân tạo.</p>
-  </div>
-
-  <div class="grid grid-4" id="theoryGrid">
-    <div class="card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-        <h3>Ưu điểm</h3>
-        <p>Phân tích sức mạnh và lợi thế vượt trội của AI.</p>
-      </div>
-      <button class="btn-action" data-content="uu-diem" onclick="openContent(this)">Khám phá</button>
-    </div>
-    <div class="card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3>Hạn chế</h3>
-        <p>Nhận diện điểm yếu và giới hạn kỹ thuật.</p>
-      </div>
-      <button class="btn-action" data-content="han-che" onclick="openContent(this)">Khám phá</button>
-    </div>
-    <div class="card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-book-open"></i></div>
-        <h3>Kinh nghiệm</h3>
-        <p>Phương pháp "Double Check" hiệu quả.</p>
-      </div>
-      <button class="btn-action" data-content="kinh-nghiem" onclick="openContent(this)">Khám phá</button>
-    </div>
-    <div class="card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
-        <h3>Mẹo vặt</h3>
-        <p>Tips & Tricks tối ưu hóa Workflow.</p>
-      </div>
-      <button class="btn-action" data-content="meo-vat" onclick="openContent(this)">Khám phá</button>
-    </div>
-  </div>
-
-  <div class="section-header">
-    <h2>Tranh tài</h2>
-    <p>Thử thách bản thân qua các cuộc thi thực tế.</p>
+    <img src="1000032560.png" alt="Logo Truong" class="school-logo">
   </div>
   
-  <div class="grid grid-2">
-    <div class="card contest-card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-        <h3>Đánh giá chất lượng</h3>
-        <p>Tham gia đánh giá Blind Test các mô hình AI mới nhất.</p>
-      </div>
-      <button class="btn-action" data-link="https://wayground.com/join/quiz/694a3042e6f90ed46c69deb1/start?studentShare=true" onclick="openDrive(this)">Mở bài thi</button>
-    </div>
-
-    <div class="card contest-card">
-      <div>
-        <div class="icon-box"><i class="fa-solid fa-image"></i></div>
-        <h3>Tranh tài Poster</h3>
-        <p>Sáng tạo Poster nghệ thuật sử dụng Generative AI.</p>
-      </div>
-      <button class="btn-action" data-link="https://docs.google.com/forms/d/e/1FAIpQLSfnF2PgM_3gO-sC4dm23oUji7W6pi5XWXQDFC0ZWiCA337Yjw/viewform?usp=dialog" onclick="openDrive(this)">Nộp sản phẩm</button>
-    </div>
+  <div class="header-center">
+    <div class="main-title">AMF</div>
+    <div class="slogan">Diễn đàn giúp nâng cao nhận thức, điều chỉnh hành vi sử dụng AI trong học tập của học sinh ở trường THPT</div>
   </div>
 
-  <div class="section-header">
-    <h2>Cộng đồng</h2>
-    <p>Kết nối với những người cùng đam mê trên các nền tảng.</p>
-  </div>
+  <div></div>
+</header>
 
-  <div class="community-container">
-    <div class="social-banner banner-discord">
-      <div class="social-content">
-        <h3><i class="fa-brands fa-discord"></i> Discord Server</h3>
-        <p>Tham gia thảo luận trực tiếp và nhận hỗ trợ từ cộng đồng AMF.</p>
+<div class="main-wrapper">
+
+  <aside class="left-col">
+    <div class="panel-box">
+      <h3 class="panel-header">Lý thuyết</h3>
+      
+      <div style="margin-bottom: 20px;">
+        <div class="mini-card" onclick="openContent('uu-diem')">
+          <i class="fa-solid fa-bolt"></i>
+          <h4>Ưu điểm</h4>
+        </div>
+        <div class="mini-card" onclick="openContent('han-che')">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>Hạn chế</h4>
+        </div>
+        <div class="mini-card" onclick="openContent('kinh-nghiem')">
+          <i class="fa-solid fa-book-open"></i>
+          <h4>Kinh nghiệm</h4>
+        </div>
+        <div class="mini-card" onclick="openContent('meo-vat')">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h4>Mẹo vặt</h4>
+        </div>
       </div>
-      <a href="https://discord.gg/KT2tTQCt" target="_blank" class="social-btn">Tham gia ngay <i class="fa-solid fa-arrow-right"></i></a>
+
+      <div class="product-zone">
+        <h3 class="panel-header">Tranh tài (Sản phẩm)</h3>
+        
+        <div class="mini-card" style="border-left: 3px solid var(--accent-secondary);" 
+             onclick="window.open('https://wayground.com/join/quiz/694a3042e6f90ed46c69deb1/start?studentShare=true', '_blank')">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <div>
+            <h4>Đánh giá AI</h4>
+            <small style="font-size: 10px; color:#aaa;">Blind Test Contest</small>
+          </div>
+        </div>
+
+        <div class="mini-card" style="border-left: 3px solid var(--accent-secondary);"
+             onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfnF2PgM_3gO-sC4dm23oUji7W6pi5XWXQDFC0ZWiCA337Yjw/viewform?usp=dialog', '_blank')">
+          <i class="fa-solid fa-image"></i>
+          <div>
+            <h4>Poster Contest</h4>
+            <small style="font-size: 10px; color:#aaa;">Generative Art</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="center-col">
+    <div class="panel-box">
+      <h3 class="panel-header">Hình Ảnh</h3>
+      <div class="hero-visual">
+        <div class="hero-text">
+          <h2 style="color: var(--accent-primary); text-shadow: 0 0 10px var(--accent-primary);">HOẠT ĐỘNG</h2>
+          <p style="font-size: 12px; letter-spacing: 2px;">SẮP XẾP HỆ THẨM MỸ</p>
+        </div>
+      </div>
     </div>
 
-    <div class="social-banner banner-tiktok">
-      <div class="social-content">
-        <h3><i class="fa-brands fa-tiktok"></i> TikTok Channel</h3>
-        <p>Xem các video ngắn chia sẻ mẹo vặt và tin tức AI mới nhất.</p>
+    <div class="panel-box">
+      <h3 class="panel-header">Các nền tảng khác</h3>
+      <div class="social-list">
+        
+        <a href="https://discord.gg/KT2tTQCt" target="_blank" class="social-banner discord-bg">
+          <div class="sb-content">
+            <h4><i class="fa-brands fa-discord"></i> Discord Server</h4>
+            <p>Tham gia thảo luận trực tiếp.</p>
+          </div>
+          <div class="sb-btn">Tham gia ngay <i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a href="https://www.tiktok.com/@forum.amf" target="_blank" class="social-banner tiktok-bg">
+          <div class="sb-content">
+            <h4><i class="fa-brands fa-tiktok"></i> TikTok Channel</h4>
+            <p>Xem video ngắn & mẹo vặt.</p>
+          </div>
+          <div class="sb-btn">Follow ngay <i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a href="https://www.facebook.com/share/1C5YF6XLWC/" target="_blank" class="social-banner fb-bg">
+          <div class="sb-content">
+            <h4><i class="fa-brands fa-facebook"></i> Facebook Group</h4>
+            <p>Cập nhật thông báo mới nhất.</p>
+          </div>
+          <div class="sb-btn">Tham gia nhóm <i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
       </div>
-      <a href="https://www.tiktok.com/@forum.amf?_r=1&_t=ZS-92S8noUqa5C" target="_blank" class="social-btn">Follow ngay <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </main>
+
+  <aside class="right-col">
+    <div class="panel-box">
+      <h3 class="panel-header">Kế hoạch hoạt động</h3>
+      
+      <div style="margin-bottom: 20px;">
+        <strong style="color: var(--accent-primary); display:block; margin-bottom:10px;">HỌC KỲ I</strong>
+        <ul class="timeline-list">
+          <li class="timeline-item"><span class="month-label">Tháng 9:</span> <span class="plan-content">Khởi động</span></li>
+          <li class="timeline-item"><span class="month-label">Tháng 10:</span> <span class="plan-content">Tuyển thành viên</span></li>
+          <li class="timeline-item"><span class="month-label">Tháng 11:</span> <span class="plan-content">Contest Poster</span></li>
+          <li class="timeline-item"><span class="month-label">Tháng 12:</span> <span class="plan-content">Workshop AI</span></li>
+          <li class="timeline-item"><span class="month-label">Tháng 1:</span> <span class="plan-content">Tổng kết HK1</span></li>
+        </ul>
+      </div>
+
+      <div style="opacity: 0.5;">
+        <strong style="color: var(--text-muted);">HỌC KỲ II</strong>
+        <p style="font-size: 12px; font-style: italic;">(Đang xây dựng...)</p>
+      </div>
     </div>
 
-    <div class="social-banner banner-facebook">
-      <div class="social-content">
-        <h3><i class="fa-brands fa-facebook"></i> Facebook Group</h3>
-        <p>Cập nhật thông báo và chia sẻ sản phẩm sáng tạo của bạn.</p>
+    <div class="panel-box">
+      <h3 class="panel-header">Thông báo</h3>
+      <div class="notification-box">
+        <i class="fa-solid fa-bullhorn"></i> 
+        <a href="#">Link khảo sát lần 1</a>
+        <div style="font-size: 10px; color: #aaa; margin-top:2px;">Đã đóng</div>
       </div>
-      <a href="https://www.facebook.com/share/1C5YF6XLWC/" target="_blank" class="social-btn">Tham gia nhóm <i class="fa-solid fa-arrow-right"></i></a>
+      <div class="notification-box">
+        <i class="fa-solid fa-bullhorn"></i> 
+        <a href="#">Link khảo sát lần 2</a>
+        <div style="font-size: 10px; color: #aaa; margin-top:2px;">Mới cập nhật</div>
+      </div>
     </div>
-  </div>
+
+    <div class="panel-box" style="text-align: center;">
+      <h3 class="panel-header" style="font-size: 14px; border:none; margin:0;">NỘI QUI THÀNH VIÊN</h3>
+      <i class="fa-solid fa-book-journal-whills" style="font-size: 30px; color: var(--text-muted); margin-top: 10px;"></i>
+    </div>
+  </aside>
 
 </div>
-
-<footer>
-  <p>&copy; 2024 AMF - A.I Mastering Forum. All rights reserved.</p>
-</footer>
 
 <div id="theoryModal" class="content-modal" onclick="closeContent()">
   <div class="modal-content-wrapper" onclick="event.stopPropagation()">
-    <h3 id="modalTitle"></h3>
-    <div id="modalBody"></div>
+    <h3 id="modalTitle" style="color: var(--accent-primary); margin-bottom: 15px; font-size: 20px;"></h3>
+    <p id="modalBody" style="line-height: 1.6; white-space: pre-line;"></p>
+    <div style="text-align: right; margin-top: 20px;">
+      <button onclick="closeContent()" style="padding: 8px 25px; background: var(--accent-secondary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Đóng</button>
+    </div>
   </div>
 </div>
 
