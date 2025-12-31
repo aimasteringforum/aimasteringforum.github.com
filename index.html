@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -7,206 +7,356 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&family=Be+Vietnam+Pro:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* =======================
-   1. VARIABLES
+   1. VARIABLES & THEME
 ======================= */
 :root {
-  --bg-body: #eff2f7; 
-  --bg-card: #ffffff;
-  --bg-header: rgba(255, 255, 255, 0.95);
-  --text-main: #4b5563;
-  --text-heading: #111827;
-  --text-muted: #9ca3af;
-  --border-color: #e5e7eb;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --accent-primary: #0ea5e9;   
-  --accent-secondary: #8b5cf6; 
-  --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
-  --card-hover-bg: #f8fafc;
-  --badge-bg: #e0f2fe;
+  /* Core Colors */
+  --bg-body: #0f172a;
+  --bg-blob-1: #4f46e5;
+  --bg-blob-2: #0ea5e9;
+  
+  /* Glassmorphism Colors */
+  --glass-bg: rgba(30, 41, 59, 0.7); /* Màu nền kính */
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+  
+  /* Text Colors */
+  --text-main: #e2e8f0;
+  --text-heading: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  /* Accents */
+  --accent-primary: #38bdf8;   /* Cyan Neon */
+  --accent-secondary: #8b5cf6; /* Purple Neon */
+  --accent-glow: 0 0 20px rgba(56, 189, 248, 0.3);
+  
+  --radius-xl: 24px;
+  --radius-md: 16px;
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] {
-  --bg-body: #0f172a;
-  --bg-card: #1e293b;
-  --bg-header: rgba(15, 23, 42, 0.9);
-  --text-main: #cbd5e1;
-  --text-heading: #f1f5f9;
+[data-theme="light"] {
+  --bg-body: #f0f4f8;
+  --bg-blob-1: #c4b5fd;
+  --bg-blob-2: #bae6fd;
+  
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-highlight: rgba(255, 255, 255, 0.4);
+  
+  --text-main: #334155;
+  --text-heading: #0f172a;
   --text-muted: #64748b;
-  --border-color: #334155;
-  --shadow-sm: none;
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --accent-primary: #38bdf8;
-  --accent-secondary: #a78bfa;
-  --card-hover-bg: #1e3a8a;
-  --badge-bg: #1e293b;
+  
+  --accent-primary: #0284c7;
+  --accent-secondary: #7c3aed;
+  --accent-glow: 0 0 15px rgba(2, 132, 199, 0.15);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
 /* =======================
-   2. CORE LAYOUT & ANIMATION
+   2. GLOBAL STYLES
 ======================= */
 * { box-sizing: border-box; padding: 0; margin: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-html { overflow-x: hidden; }
 
 body {
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Be Vietnam Pro', sans-serif;
   background-color: var(--bg-body);
   color: var(--text-main);
   min-height: 100vh;
-  transition: background 0.3s, color 0.3s;
   overflow-x: hidden;
-}
-
-/* HEADER */
-header {
-  width: 100%; padding: 10px 30px; background: var(--bg-header); border-bottom: 1px solid var(--border-color);
-  display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000;
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); height: 90px;
-}
-.school-logo { height: 75px; width: auto; object-fit: contain; }
-.header-center { text-align: center; position: absolute; left: 50%; transform: translateX(-50%); }
-.main-title { font-size: 34px; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Orbitron', sans-serif; }
-
-/* MAIN CONTAINER GRID */
-.main-grid {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 24px;
-  max-width: 1400px;
-  margin: 30px auto;
-  padding: 0 20px;
   position: relative;
 }
 
-/* LEFT SIDEBAR */
-.left-sidebar { position: relative; z-index: 50; height: fit-content; }
+/* Animated Background Blobs */
+body::before, body::after {
+  content: ''; position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.6;
+  animation: floatBlobs 10s infinite alternate ease-in-out;
+}
+body::before {
+  width: 500px; height: 500px; background: var(--bg-blob-1); top: -100px; left: -100px;
+}
+body::after {
+  width: 400px; height: 400px; background: var(--bg-blob-2); bottom: 0; right: 0; animation-delay: -5s;
+}
 
-/* CONTENT CONTAINER (Push Effect) */
+@keyframes floatBlobs {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* =======================
+   3. GLASS COMPONENTS
+======================= */
+/* Header Glass */
+header {
+  width: 100%; padding: 15px 40px; 
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex; justify-content: space-between; align-items: center; 
+  position: sticky; top: 0; z-index: 1000;
+  box-shadow: var(--shadow-glass);
+}
+
+/* Panel Box Glass (Container) */
+.panel-box { 
+  background: var(--glass-bg); 
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border); 
+  border-radius: var(--radius-xl); 
+  padding: 24px; margin-bottom: 24px; 
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.panel-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* =======================
+   4. LAYOUT & INTERACTIVE
+======================= */
+.school-logo { height: 60px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+.header-center { text-align: center; position: absolute; left: 50%; transform: translateX(-50%); }
+.main-title { 
+  font-size: 32px; font-weight: 900; letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--text-heading) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+  font-family: 'Orbitron', sans-serif; 
+  text-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+}
+.slogan { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; }
+
+/* Grid Layout */
+.main-grid {
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px;
+  max-width: 1400px; margin: 40px auto; padding: 0 20px;
+  position: relative;
+}
+
+.left-sidebar { position: relative; z-index: 50; }
+
 .pushable-content {
-  display: grid;
-  grid-template-columns: 1fr 300px; 
-  gap: 24px;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, filter 0.4s ease;
+  display: grid; grid-template-columns: 1fr 320px; gap: 24px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s, filter 0.4s;
   transform-origin: left center;
 }
-
 .pushable-content.is-pushed {
-  transform: translateX(30%);
-  opacity: 0.4;
-  filter: blur(4px);
-  pointer-events: auto;
-  cursor: pointer;
+  transform: translateX(20%) scale(0.95);
+  opacity: 0.3; filter: blur(5px) grayscale(80%);
+  pointer-events: auto; cursor: pointer;
 }
 
-/* SLIDING PANEL */
+/* Sliding Panel */
 .sliding-panel {
-  position: absolute;
-  top: 0;
-  left: 304px; /* 280 + 24 */
-  width: calc(100% - 304px);
-  max-width: 800px;
-  min-height: 600px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: var(--shadow-lg);
+  position: absolute; top: 0; left: 304px; 
+  width: calc(100% - 304px); max-width: 850px; min-height: 650px;
+  background: rgba(15, 23, 42, 0.85); 
+  backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-xl); padding: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1);
   z-index: 40;
   
-  opacity: 0;
-  transform: translateX(-50px) scale(0.95);
-  pointer-events: none;
-  visibility: hidden;
-  
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0; transform: translateX(-50px) rotateY(10deg) scale(0.9);
+  pointer-events: none; visibility: hidden;
+  transform-style: preserve-3d; perspective: 1000px;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
+.sliding-panel::before {
+  content: ''; position: absolute; top:0; left:0; right:0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.5;
+}
 .sliding-panel.is-open {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  pointer-events: auto;
-  visibility: visible;
+  opacity: 1; transform: translateX(0) rotateY(0) scale(1);
+  pointer-events: auto; visibility: visible;
 }
 
-/* MOBILE RESPONSIVE */
+/* =======================
+   5. COMPONENT STYLES
+======================= */
+.panel-header { 
+  border-bottom: 1px solid var(--glass-border); 
+  padding-bottom: 15px; margin-bottom: 20px; 
+  font-size: 14px; font-weight: 800; color: var(--text-muted); 
+  text-transform: uppercase; letter-spacing: 1.5px;
+  display: flex; align-items: center; gap: 10px; 
+}
+.panel-header i { color: var(--accent-primary); filter: drop-shadow(0 0 5px var(--accent-primary)); }
+
+/* Mini Cards */
+.mini-card { 
+  background: var(--glass-highlight); 
+  border: 1px solid transparent; 
+  padding: 16px; border-radius: var(--radius-md); 
+  margin-bottom: 12px; cursor: pointer; 
+  display: flex; align-items: center; gap: 15px; 
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.mini-card:hover { 
+  background: rgba(255,255,255,0.1); 
+  transform: translateX(5px);
+  border-color: rgba(255,255,255,0.2);
+}
+.mini-card.active-tab { 
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, transparent 100%);
+  border-left: 4px solid var(--accent-primary);
+  box-shadow: var(--accent-glow);
+}
+.mini-card h4 { color: var(--text-heading); font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.mini-card i { 
+  font-size: 20px; width: 30px; text-align: center; 
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* =======================
+   GALLERY GRID (Compact & Visual)
+======================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột */
+    grid-template-rows: repeat(2, 1fr);    /* 2 hàng */
+    gap: 12px;
+    width: 100%;
+    height: 320px; /* Chiều cao cố định */
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--glass-border);
+    background: rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.9;
+}
+
+.gallery-item:hover {
+    border-color: var(--accent-primary);
+    box-shadow: var(--accent-glow);
+    transform: scale(1.02);
+    z-index: 10;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Content Typography */
+.content-wrapper { transition: opacity 0.3s, filter 0.3s; }
+.content-wrapper.blur { filter: blur(5px); opacity: 0.5; }
+
+.content-title { 
+  font-size: 32px; font-weight: 700; color: var(--text-heading); 
+  margin-bottom: 20px; padding-bottom: 20px; 
+  border-bottom: 1px dashed var(--border-color);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+.content-body { 
+  font-size: 17px; line-height: 1.8; color: var(--text-main); 
+  white-space: pre-line; font-weight: 300;
+}
+.content-body strong { color: var(--accent-primary); font-weight: 600; }
+
+.btn-close-panel {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-heading); border: 1px solid var(--glass-border); 
+  transition: 0.3s; backdrop-filter: blur(5px);
+}
+.btn-close-panel:hover { background: #ef4444; border-color: #ef4444; color: white; transform: rotate(90deg); box-shadow: 0 0 15px #ef4444; }
+
+/* Social Banners */
+.social-banner { 
+  padding: 15px 20px; border-radius: var(--radius-md); 
+  display: flex; justify-content: space-between; align-items: center; 
+  color: white; margin-bottom: 12px; text-decoration: none; 
+  transition: all 0.3s; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+}
+.social-banner:hover { transform: translateX(5px); filter: brightness(1.2); }
+.social-banner h4 { font-family: 'Be Vietnam Pro'; font-weight: 700; margin-bottom: 2px; }
+.social-banner small { opacity: 0.8; font-size: 11px; }
+
+.discord-bg { background: linear-gradient(135deg, rgba(88, 101, 242, 0.8) 0%, rgba(88, 101, 242, 0.4) 100%); }
+.tiktok-bg { background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(50, 50, 50, 0.5) 100%); }
+.fb-bg { background: linear-gradient(135deg, rgba(24, 119, 242, 0.8) 0%, rgba(24, 119, 242, 0.4) 100%); }
+
+/* Timeline */
+.timeline-item { 
+  position: relative; padding-left: 20px; margin-bottom: 25px; 
+  border-left: 2px solid var(--glass-border); 
+}
+.timeline-item::before {
+  content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px;
+  background: var(--accent-primary); border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+.time-badge { 
+  display: inline-block; background: rgba(14, 165, 233, 0.15); 
+  color: var(--accent-primary); font-size: 11px; font-weight: 700; 
+  padding: 4px 10px; border-radius: 20px; margin-bottom: 6px; 
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+/* Notification Box */
+.notification-box { 
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05)); 
+  border: 1px solid rgba(249, 115, 22, 0.3); 
+  padding: 20px; border-radius: var(--radius-md); 
+  display: flex; align-items: center; gap: 15px; 
+  color: var(--text-heading); position: relative; overflow: hidden;
+}
+.notification-box::after { content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%; background: #f97316; }
+
+/* Switch UI */
+.theme-switch-wrapper { display: flex; align-items: center; }
+.theme-switch { display: inline-block; height: 28px; position: relative; width: 50px; }
+.theme-switch input { display:none; }
+.slider { background-color: rgba(255,255,255,0.2); bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; border: 1px solid var(--glass-border); }
+.slider:before { background-color: #fff; bottom: 3px; content: ""; height: 20px; left: 3px; position: absolute; transition: .4s; width: 20px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+input:checked + .slider { background-color: var(--accent-secondary); border-color: var(--accent-secondary); }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .main-grid { grid-template-columns: 1fr; }
   .left-sidebar { margin-bottom: 20px; }
   .pushable-content { grid-template-columns: 1fr 1fr; }
-  
-  /* Mobile Overlay Mode */
-  .sliding-panel {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    max-width: none; border-radius: 0; z-index: 2000;
-    background: var(--bg-body); overflow-y: auto; left: 0 !important;
-  }
+  .sliding-panel { position: fixed; left: 0; width: 100%; height: 100%; max-width: none; border-radius: 0; z-index: 2000; overflow-y: auto; padding-top: 80px; }
   .pushable-content.is-pushed { transform: none; filter: none; }
 }
-
 @media (max-width: 768px) {
-  header { height: auto; flex-direction: column; gap: 10px; padding: 15px; }
-  .header-center { position: static; transform: none; margin: 10px 0; }
+  header { height: auto; flex-direction: column; gap: 15px; padding: 20px; background: var(--bg-body); }
+  .header-center { position: static; transform: none; }
   .pushable-content { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; height: auto; grid-auto-rows: 150px; }
 }
 
-/* =======================
-   3. COMPONENT STYLES
-======================= */
-.panel-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-.panel-header { border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 18px; font-size: 16px; font-weight: 700; color: var(--text-heading); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-.panel-header i { color: var(--accent-primary); }
-
-/* Left Menu Items */
-.mini-card { background: var(--bg-body); border: 1px solid transparent; padding: 16px; border-radius: 16px; margin-bottom: 12px; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: all 0.2s; }
-.mini-card:hover, .mini-card.active-tab { background: var(--card-hover-bg); border-color: var(--accent-primary); transform: translateX(5px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-.mini-card i { color: var(--accent-primary); font-size: 22px; width: 24px; text-align: center; }
-.mini-card.active-tab i { color: var(--accent-secondary); }
-
-/* Content Inside Panel */
-.content-wrapper { transition: opacity 0.3s, filter 0.3s; }
-.content-wrapper.blur { filter: blur(5px); opacity: 0.5; }
-
-.content-title { font-size: 26px; font-weight: 800; color: var(--accent-primary); margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; font-family: 'Be Vietnam Pro', sans-serif; }
-.content-body { font-size: 16px; line-height: 1.8; color: var(--text-main); white-space: pre-line; }
-
-.btn-close-panel {
-  position: absolute; top: 20px; right: 20px;
-  width: 40px; height: 40px; background: var(--bg-body);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--text-muted); border: 1px solid var(--border-color); transition: 0.2s;
-}
-.btn-close-panel:hover { background: #fee2e2; color: #ef4444; border-color: #fecaca; transform: rotate(90deg); }
-
-/* Hero & Social */
-.hero-visual { height: 280px; background: radial-gradient(circle at center, #334155 0%, #0f172a 100%); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 20px;}
-.hero-visual::before { content: ''; position: absolute; width: 100%; height: 100%; background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3p4YzR6eHozYzR6eHozYzR6eHozYzR6eHozYzR6eHozeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LMcB8XwnpYQR3IgT3n/giphy.gif'); opacity: 0.2; background-size: cover; mix-blend-mode: screen; }
-.hero-text { z-index: 2; text-align: center; background: rgba(15, 23, 42, 0.6); padding: 25px; border-radius: 16px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
-.hero-text h2 { color: #fff; margin-bottom: 8px; }
-
-.social-banner { padding: 18px 24px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 12px; text-decoration: none; transition: transform 0.2s; }
-.social-banner:hover { transform: translateY(-3px); }
-.discord-bg { background: linear-gradient(135deg, #5865F2 0%, #404EED 100%); }
-.tiktok-bg { background: linear-gradient(135deg, #111 0%, #333 100%); }
-.fb-bg { background: linear-gradient(135deg, #1877F2 0%, #0056b3 100%); }
-
-/* TIMELINE (Updated) */
-.timeline-item { display: flex; flex-direction: column; margin-bottom: 20px; padding-left: 15px; border-left: 2px solid var(--border-color); }
-.time-badge { display: inline-block; background: var(--badge-bg); color: #0284c7; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; margin-bottom: 4px; width: fit-content; }
-.notification-box { background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.2); padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 12px; color: var(--text-heading); }
-
-/* Switch */
-.theme-switch-wrapper { display: flex; align-items: center; }
-.theme-switch { display: inline-block; height: 32px; position: relative; width: 58px; }
-.theme-switch input { display:none; }
-.slider { background-color: #cbd5e1; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; }
-.slider:before { background-color: #fff; bottom: 4px; content: ""; height: 24px; left: 4px; position: absolute; transition: .4s; width: 24px; border-radius: 50%; }
-input:checked + .slider { background-color: var(--accent-secondary); }
-input:checked + .slider:before { transform: translateX(26px); }
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
 
 </style>
 </head>
@@ -235,7 +385,7 @@ input:checked + .slider:before { transform: translateX(26px); }
 
   <aside class="left-sidebar">
     <div class="panel-box">
-      <h3 class="panel-header"><i class="fa-solid fa-graduation-cap"></i> Lý thuyết</h3>
+      <div class="panel-header"><i class="fa-solid fa-graduation-cap"></i> Lý thuyết</div>
       
       <div style="margin-bottom: 20px;">
         <div class="mini-card" onclick="openPanel('uu-diem', this)">
@@ -268,13 +418,13 @@ input:checked + .slider:before { transform: translateX(26px); }
         </div>
       </div>
 
-      <div class="product-zone" style="border-top: 1px dashed var(--border-color); padding-top: 20px;">
-        <h3 class="panel-header"><i class="fa-solid fa-trophy"></i> Tranh tài</h3>
-        <div class="mini-card" style="border-left: 3px solid var(--accent-secondary);" onclick="window.open('https://wayground.com', '_blank')">
+      <div class="product-zone" style="border-top: 1px dashed var(--glass-border); padding-top: 20px;">
+        <div class="panel-header"><i class="fa-solid fa-trophy"></i> Tranh tài</div>
+        <div class="mini-card" onclick="window.open('https://wayground.com', '_blank')">
           <i class="fa-solid fa-magnifying-glass-chart"></i>
           <h4>Đánh giá AI</h4>
         </div>
-        <div class="mini-card" style="border-left: 3px solid var(--accent-secondary);" onclick="window.open('https://google.com', '_blank')">
+        <div class="mini-card" onclick="window.open('https://google.com', '_blank')">
           <i class="fa-solid fa-image"></i>
           <h4>Poster Contest</h4>
         </div>
@@ -297,17 +447,20 @@ input:checked + .slider:before { transform: translateX(26px); }
     
     <main class="center-col">
       <div class="panel-box">
-        <h3 class="panel-header"><i class="fa-solid fa-image"></i> Hình Ảnh Nổi Bật</h3>
-        <div class="hero-visual">
-            <div class="hero-text">
-              <h2>HOẠT ĐỘNG</h2>
-              <p>SẮP XẾP HỆ THẨM MỸ</p>
-            </div>
+        <div class="panel-header"><i class="fa-solid fa-images"></i> Tác phẩm nổi bật</div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="1.png" alt="Art 1"></div>
+            <div class="gallery-item"><img src="2.png" alt="Art 2"></div>
+            <div class="gallery-item"><img src="3.png" alt="Art 3"></div>
+            <div class="gallery-item"><img src="4.png" alt="Art 4"></div>
+            <div class="gallery-item"><img src="5.png" alt="Art 5"></div>
+            <div class="gallery-item"><img src="6.png" alt="Art 6"></div>
         </div>
       </div>
 
       <div class="panel-box">
-        <h3 class="panel-header"><i class="fa-solid fa-users"></i> Cộng đồng</h3>
+        <div class="panel-header"><i class="fa-solid fa-users"></i> Cộng đồng</div>
         <div style="display: flex; flex-direction: column;">
             <a href="#" class="social-banner discord-bg">
               <div><h4><i class="fa-brands fa-discord"></i> Discord</h4><small>Thảo luận 24/7</small></div>
@@ -327,44 +480,45 @@ input:checked + .slider:before { transform: translateX(26px); }
 
     <aside class="right-col">
       <div class="panel-box">
-        <h3 class="panel-header"><i class="fa-regular fa-calendar-check"></i> Kế hoạch</h3>
+        <div class="panel-header"><i class="fa-regular fa-calendar-check"></i> Kế hoạch</div>
         
         <div class="timeline-item">
             <span class="time-badge">20 - 29/12/2025</span>
-            <div style="font-weight:700">Cuộc thi Poster lần 1</div>
+            <div style="font-weight:700; color:var(--text-heading)">Cuộc thi Poster lần 1</div>
             <div style="font-size:13px; color:var(--text-muted)">Đề tài: "AI và Tri thức"</div>
         </div>
 
         <div class="timeline-item">
             <span class="time-badge">25 - 29/12/2025</span>
-            <div style="font-weight:700">Khảo sát kiến thức phần 1</div>
+            <div style="font-weight:700; color:var(--text-heading)">Khảo sát kiến thức</div>
             <div style="font-size:13px; color:var(--text-muted)">Tổ chức khảo sát chuyên sâu</div>
         </div>
 
         <div class="timeline-item">
             <span class="time-badge">30 - 31/12/2025</span>
-            <div style="font-weight:700">Công bố & Tuyên truyền</div>
-            <div style="font-size:13px; color:var(--text-muted)">Chọn poster thắng giải & đăng tải tuyên truyền</div>
+            <div style="font-weight:700; color:var(--text-heading)">Công bố & Tuyên truyền</div>
+            <div style="font-size:13px; color:var(--text-muted)">Chọn poster thắng giải</div>
         </div>
 
       </div>
 
       <div class="panel-box">
-        <h3 class="panel-header"><i class="fa-solid fa-bell"></i> Thông báo</h3>
+        <div class="panel-header"><i class="fa-solid fa-bell"></i> Thông báo</div>
         <div class="notification-box">
-          <i class="fa-solid fa-bullhorn" style="color: #f97316; font-size: 20px;"></i> 
+          <i class="fa-solid fa-bullhorn" style="color: #f97316; font-size: 24px; filter: drop-shadow(0 0 5px #f97316);"></i> 
           <div>
-             <div style="font-size: 10px; color:var(--text-muted);">QUAN TRỌNG</div>
-             <a href="#" style="color: #c2410c; font-weight:700;">Link khảo sát lần 1</a>
+             <div style="font-size: 10px; color:var(--text-muted); letter-spacing:1px; font-weight:700">QUAN TRỌNG</div>
+             <a href="#" style="color: #fb923c; font-weight:700; text-decoration:none;">Link tham gia khảo sát</a>
           </div>
         </div>
       </div>
     </aside>
 
-  </div> </div>
+  </div> 
+</div>
 
 <script>
-// --- DỮ LIỆU ---
+// --- GIỮ NGUYÊN LOGIC ---
 const contentData = {
   'uu-diem': {
     title: '⚡ Ưu điểm của AI trong Giáo dục',
@@ -384,14 +538,12 @@ const contentData = {
   }
 };
 
-// --- DOM ELEMENTS ---
 const pushableContent = document.getElementById('pushableContent');
 const slidingPanel = document.getElementById('slidingPanel');
 const panelContentWrapper = document.getElementById('panelContentWrapper');
 const panelTitle = document.getElementById('panelTitle');
 const panelBody = document.getElementById('panelBody');
 
-// --- LOGIC MỞ PANEL ---
 function openPanel(id, element) {
   document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
   element.classList.add('active-tab');
@@ -412,29 +564,33 @@ function openPanel(id, element) {
 
 function updateContent(data) {
   panelTitle.innerHTML = data.title;
-  panelBody.innerText = data.content;
+  let formatted = data.content
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+  panelBody.innerHTML = formatted;
 }
 
-// --- LOGIC ĐÓNG PANEL ---
 function closePanel() {
   document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
   slidingPanel.classList.remove('is-open');
   pushableContent.classList.remove('is-pushed');
 }
 
-// --- CLICK OUTSIDE TO CLOSE ---
 function handleOutsideClick() {
   if (pushableContent.classList.contains('is-pushed')) {
     closePanel();
   }
 }
 
-// --- THEME SWITCH ---
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-if (localStorage.getItem('theme') === 'dark') {
+if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggleSwitch.checked = false;
+} else {
     document.documentElement.setAttribute('data-theme', 'dark');
     toggleSwitch.checked = true;
 }
+
 toggleSwitch.addEventListener('change', (e) => {
     const theme = e.target.checked ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
