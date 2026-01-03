@@ -57,7 +57,7 @@
   --text-heading: #0f172a;
   --text-muted: #64748b;
   
-  /* SỬA LỖI LIGHT MODE CHO PANEL */
+  /* LIGHT MODE PANEL FIX */
   --panel-bg: rgba(255, 255, 255, 0.95);
   --panel-text: #1e293b;
   
@@ -77,7 +77,8 @@ body {
   background-color: var(--bg-body);
   color: var(--text-main);
   min-height: 100vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; -> Bỏ chặn cuộn ngang cứng để tránh lỗi trên một số máy, chỉ ẩn scrollbar */
+  overflow-x: clip; 
   position: relative;
 }
 
@@ -144,7 +145,6 @@ header {
 /* Main Grid Layout */
 .main-grid {
   display: grid; 
-  /* Cấu trúc: Sidebar Trái (Menu) | Phần nội dung đẩy được (Gồm Main + Sidebar Phải) */
   grid-template-columns: 280px 1fr; 
   gap: 24px;
   max-width: 1400px; margin: 40px auto; padding: 0 20px;
@@ -153,17 +153,17 @@ header {
 
 .left-sidebar { position: relative; z-index: 50; }
 
-/* Pushable Content: Chứa cả Main Center và Right Sidebar */
+/* Pushable Content */
 .pushable-content {
   display: grid;
-  grid-template-columns: 1fr 320px; /* Main chiếm phần còn lại, Sidebar phải 320px */
+  grid-template-columns: 1fr 320px; 
   gap: 24px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s, filter 0.4s;
   transform-origin: left center;
 }
 
 .pushable-content.is-pushed {
-  transform: translateX(10%) scale(0.95); /* Đẩy nhẹ sang phải */
+  transform: translateX(10%) scale(0.95); 
   opacity: 0.3; filter: blur(5px) grayscale(80%);
   pointer-events: auto; cursor: pointer;
 }
@@ -172,7 +172,6 @@ header {
 .sliding-panel {
   position: fixed; top: 0; left: 0; 
   width: 100%; height: 100%; 
-  /* Sử dụng biến màu để fix lỗi Light Mode */
   background: var(--panel-bg); 
   color: var(--panel-text);
   
@@ -185,14 +184,24 @@ header {
   opacity: 0; transform: translateX(-100px) scale(0.95);
   pointer-events: none; visibility: hidden;
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow-y: auto;
+  
+  /* Cho phép cuộn bên trong Panel */
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; 
+  padding-bottom: 100px; 
 }
 
 /* Desktop override cho sliding panel */
 @media (min-width: 1025px) {
   .sliding-panel {
     position: absolute; top: 0; left: 304px;
-    width: calc(100% - 304px); max-width: 850px; min-height: 650px; height: auto;
+    width: calc(100% - 304px); max-width: 850px; 
+    
+    /* Cố định chiều cao và cho phép cuộn */
+    height: 85vh; 
+    max-height: 800px; 
+    overflow-y: auto;
+    
     border-radius: var(--radius-xl);
     padding: 40px;
     transform: translateX(-50px) rotateY(10deg) scale(0.9);
@@ -297,7 +306,7 @@ header {
   line-height: 1.4;
 }
 .content-body { 
-  font-size: 16px; line-height: 1.8; color: var(--panel-text); /* Dùng biến màu panel */
+  font-size: 16px; line-height: 1.8; color: var(--panel-text); 
   white-space: pre-line; font-weight: 300;
 }
 .content-body strong { color: var(--accent-primary); font-weight: 600; }
@@ -372,16 +381,15 @@ input:checked + .slider { background-color: var(--accent-secondary); border-colo
 input:checked + .slider:before { transform: translateX(20px); }
 
 /* ===========================================
-   6. RESPONSIVE FIX (MOBILE COMPACT & OPTIMIZED)
+   6. RESPONSIVE FIX
 =========================================== */
 
 @media (max-width: 1024px) {
   .main-grid { 
-      grid-template-columns: 1fr; /* 1 cột duy nhất */
+      grid-template-columns: 1fr; 
       margin: 20px auto;
   }
   
-  /* Chuyển menu thành GRID trên mobile */
   .menu-grid-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr; 
@@ -389,16 +397,14 @@ input:checked + .slider:before { transform: translateX(20px); }
   }
   .mini-card { margin-bottom: 0; height: 100%; }
   
-  /* Sliding Panel */
   .sliding-panel { width: 100%; max-width: none; border-radius: 0; border-left: none; }
   
-  /* Layout Mobile: Stacked */
   .pushable-content {
-      grid-template-columns: 1fr; /* Stack dọc: Main trên, Right Sidebar dưới */
+      grid-template-columns: 1fr; 
   }
   
   .pushable-content.is-pushed {
-    transform: scale(0.95); /* Chỉ thu nhỏ nhẹ */
+    transform: scale(0.95); 
   }
 }
 
@@ -735,7 +741,7 @@ function openPanel(id, element) {
     updateContent(data);
     slidingPanel.classList.add('is-open');
     pushableContent.classList.add('is-pushed');
-    document.body.style.overflow = 'hidden'; 
+    // document.body.style.overflow = 'hidden';  <-- ĐÃ XÓA DÒNG NÀY ĐỂ CHO PHÉP CUỘN
   } else {
     panelContentWrapper.classList.add('blur');
     setTimeout(() => {
@@ -757,7 +763,7 @@ function closePanel() {
   document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
   slidingPanel.classList.remove('is-open');
   pushableContent.classList.remove('is-pushed');
-  document.body.style.overflow = ''; 
+  // document.body.style.overflow = ''; <-- ĐÃ XÓA DÒNG NÀY VÌ KHÔNG CẦN THIẾT NỮA
 }
 
 function handleOutsideClick() {
