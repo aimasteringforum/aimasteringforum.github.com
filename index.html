@@ -645,83 +645,93 @@ function notifyLocked() {
     alert("Hệ thống đang bảo trì để nâng cấp giao diện phù hợp hơn với học sinh. Vui lòng quay lại sau!");
 }
 
-// --- NỘI DUNG AI STARTER PACK ---
+// --- NỘI DUNG AI STARTER PACK (Đã cập nhật chi tiết từ A-Z) ---
 const contentData = {
   'uu-diem': {
-    title: '⚡ Ưu điểm vượt trội của AI',
+    title: '⚡ Ưu điểm vượt trội của AI trong Giáo dục',
     content: `
-    <h3>1. Gia sư riêng 24/7 không biết mệt</h3>
-    AI đóng vai trò người đồng hành học tập mọi lúc mọi nơi:
-    * **Giải đáp tức thì:** Không cần đợi đến giờ lên lớp, mọi thắc mắc đều được giải đáp trong vài giây.
-    * **Ứng dụng thực tế:** App **Qanda** hay **Photomath** giúp giải bài tập Toán/Lý/Hóa chỉ qua 1 lần chụp ảnh (OCR + AI).
-    
-    <h3>2. Tăng tốc độ & Hiệu suất học tập</h3>
-    AI giúp loại bỏ những việc lặp đi lặp lại nhàm chán:
-    * **Tổng hợp thông tin:** Thay vì đọc 10 trang tài liệu, AI có thể tóm tắt ý chính ngắn gọn, đi thẳng vào trọng tâm.
-    * **Cá nhân hóa:** AI vẽ ra lộ trình học phù hợp với trình độ của bạn (ví dụ: Duolingo, Khan Academy Khanmigo).
+    <h3>1. Gia sư 24/7 & Giải pháp tức thì</h3>
+    Trong kỷ nguyên số, AI đóng vai trò như một người bạn đồng hành không bao giờ mệt mỏi:
+    * **Giải đáp thắc mắc mọi lúc mọi nơi:** Học sinh không còn phải chờ đợi đến giờ lên lớp để hỏi giáo viên. Mọi câu hỏi hóc búa đều có thể được giải đáp ngay lập tức, giúp mạch tư duy không bị đứt đoạn.
+    * **Tăng cường sự thông suốt:** Việc được giải thích ngay lập tức giúp học sinh lấp đầy lỗ hổng kiến thức ngay khi nó xuất hiện.
+    * **Ứng dụng thực tiễn:** Các công cụ như **Qanda** hay Photomath sử dụng công nghệ OCR kết hợp AI, cho phép giải bài tập Toán/Lý/Hóa chi tiết và dễ hiểu chỉ qua một lần chụp ảnh đơn giản.
 
-    <h3>3. Công cụ sáng tạo & Ngoại ngữ</h3>
-    * **Brainstorming:** Bí ý tưởng viết văn? AI có thể gợi ý 10 dàn ý khác nhau.
-    * **Sửa lỗi ngữ pháp:** Grammarly hay ChatGPT giúp sửa lỗi Tiếng Anh và giải thích tại sao sai.
-    * **Trực quan hóa:** Tạo sơ đồ tư duy (Mindmap), tạo hình ảnh minh họa cho bài thuyết trình.
+    <h3>2. Kho tàng tri thức & Hiệu suất cao</h3>
+    Khả năng truy cập và xử lý dữ liệu của AI vượt xa các phương pháp tìm kiếm truyền thống:
+    * **Truy cập tri thức vô tận:** Chỉ cần vài câu lệnh đơn thuần, AI giúp học sinh tiếp cận nguồn tài liệu khổng lồ từ khắp nơi trên thế giới ngay tại nhà.
+    * **Câu trả lời trọng tâm:** Khác với Google (trả về hàng loạt đường link và bắt bạn tự lọc), AI tổng hợp và đưa ra câu trả lời ngắn gọn, đi thẳng vào vấn đề, giúp tiết kiệm hàng giờ đồng hồ tìm kiếm lan man.
+    * **Trực quan hóa sinh động:** AI có khả năng mô phỏng kiến thức bằng hình ảnh, sơ đồ tư duy (Mindmap), hoặc thậm chí tạo ra các video minh họa, biến những lý thuyết khô khan trở nên dễ nhớ hơn bao giờ hết.
+
+    <h3>3. Cá nhân hóa & Định hướng tương lai</h3>
+    AI không chỉ dạy học, mà còn giúp bạn học thông minh hơn:
+    * **Lộ trình học tập riêng biệt:** Dựa trên dữ liệu về điểm mạnh/yếu của từng cá nhân, AI có thể đề xuất một lộ trình ôn luyện phù hợp nhất, tránh việc học dàn trải không hiệu quả.
+    * **Hỗ trợ ra quyết định:** Từ việc chọn khối thi, chọn ngành nghề cho đến phương pháp học, AI cung cấp các phân tích dữ liệu để học sinh đưa ra quyết định đúng đắn hơn.
+    * **Ôn thi thông minh:** Các Chatbot như ChatGPT có thể đóng vai trò giáo viên, giúp xây dựng đề cương ôn tập, tạo đề luyện thi sát với ma trận đề thi thật, giúp học sinh chuẩn bị tâm thế tốt nhất cho các kỳ thi quan trọng.
     `
   },
   'han-che': {
-    title: '🛡️ Hạn chế & Rủi ro tiềm ẩn',
+    title: '🛡️ Hạn chế & Những cạm bẫy cần tránh',
     content: `
-    <h3>1. Ảo giác (AI Hallucination)</h3>
-    Đây là vấn đề nguy hiểm nhất:
-    * AI có thể "bịa" ra thông tin rất thuyết phục nhưng sai hoàn toàn.
-    * **Ví dụ:** Hỏi về một nhân vật lịch sử ít người biết, AI có thể tự nghĩ ra năm sinh, năm mất sai lệch.
-    * *Lời khuyên:* Tuyệt đối không dùng AI làm nguồn trích dẫn duy nhất cho bài luận Lịch sử hay Văn học.
+    <h3>1. Ảo giác AI (Hallucination) & Sai lệch thông tin</h3>
+    Dù sở hữu trí tuệ siêu việt, AI vẫn chỉ là một cỗ máy dự đoán từ ngữ:
+    * **Lỗ hổng kiến thức:** Trên mạng internet vẫn lan truyền nhiều thông tin sai lệch (Fake News), và AI có thể học nhầm những dữ liệu đó. Điều này dẫn đến việc AI cung cấp tri thức có vẻ rất thuyết phục nhưng lại sai hoàn toàn về mặt bản chất.
+    * **Nguy cơ tiếp thu lệch lạc:** Nếu không có nền tảng kiến thức vững chắc để đối chiếu, học sinh rất dễ tin tưởng tuyệt đối vào AI, dẫn đến việc tiếp thu và ghi nhớ những kiến thức sai, gây hậu quả nghiêm trọng trong thi cử.
 
-    <h3>2. Sự phụ thuộc & Lười tư duy</h3>
-    * **Hội chứng "Copy-Paste":** Dùng AI làm bài hộ sẽ khiến não bộ ngừng tư duy phản biện.
-    * **Mất nền tảng:** Nếu luôn dùng Qanda để giải toán mà không hiểu bản chất, bạn sẽ "mất gốc" rất nhanh.
+    <h3>2. Sự phụ thuộc & Thui chột tư duy</h3>
+    Đây là con dao hai lưỡi nguy hiểm nhất của công nghệ:
+    * **Hội chứng "Lười tư duy":** Khi đáp án có sẵn chỉ sau một cú click chuột, não bộ sẽ dần hình thành thói quen ỷ lại. Học sinh có thể bị phụ thuộc hoàn toàn vào AI, dẫn đến mất khả năng tư duy phản biện và giải quyết vấn đề độc lập.
+    * **Kết quả trì trệ:** Sự phụ thuộc này sẽ kiềm hãm đà phát triển tự nhiên của năng lực, khiến kết quả học tập thực tế ngày càng đi xuống dù bài tập về nhà luôn hoàn thành điểm cao.
 
-    <h3>3. Vấn đề Đạo văn & Bảo mật</h3>
-    * **Đạo văn (Plagiarism):** Các trường học đang áp dụng công cụ phát hiện AI. Nộp bài do AI viết 100% có thể bị điểm 0.
-    * **Bảo mật:** Không đưa thông tin cá nhân (CCCD, địa chỉ nhà, mật khẩu) lên các đoạn chat với AI. Dữ liệu đó có thể được dùng để huấn luyện mô hình.
+    <h3>3. Vấn đề Đạo đức & Bảo mật</h3>
+    Sử dụng AI đòi hỏi một tinh thần trách nhiệm cao:
+    * **Thiếu bản sắc cá nhân:** Các sản phẩm (bài văn, tranh vẽ) do AI tạo ra hoàn toàn thường rất thô cứng, thiếu cảm xúc và "phần hồn" riêng biệt của con người.
+    * **Rủi ro bảo mật:** Việc cung cấp thông tin cá nhân (tên tuổi, trường lớp, hình ảnh) cho AI có thể dẫn đến nguy cơ dữ liệu bị rò rỉ và lạm dụng cho các mục đích xấu.
+    * **Cám dỗ gian lận:** Sự tiện ích quá mức của AI có thể thôi thúc học sinh thực hiện các hành vi sai lệch chuẩn mực đạo đức, như gian lận trong thi cử hay nhờ AI làm bài hộ thay vì tự học.
     `
   },
   'kinh-nghiem': {
-    title: '📖 Kinh nghiệm sử dụng cốt lõi',
+    title: '📖 Kinh nghiệm sử dụng AI khôn ngoan',
     content: `
-    <h3>1. Phương pháp "Double Check" (Kiểm chứng kép)</h3>
-    * Luôn coi AI là một "thực tập sinh" nhiệt tình nhưng hay sai sót.
-    * **Quy tắc:** Mọi số liệu, ngày tháng, trích dẫn từ AI **BẮT BUỘC** phải đối chiếu lại với sách giáo khoa (SGK) hoặc báo chính thống.
+    <h3>1. Tư duy làm chủ công nghệ</h3>
+    Đừng để AI trở thành "ông chủ" của bạn, hãy biến nó thành "trợ lý đắc lực":
+    * **Không sao chép - Hãy thấu hiểu:** Tuyệt đối không copy-paste nguyên văn câu trả lời của AI vào bài làm. Hãy đọc để hiểu logic, nắm bắt ý tưởng, sau đó tự diễn đạt lại bằng ngôn ngữ và tư duy của chính mình.
+    * **Công cụ hỗ trợ, không phải người làm thay:** Hãy tự giải bài tập trước, sau đó mới dùng AI như một công cụ để so sánh đáp án hoặc tìm cách giải hay hơn. Thay vì bảo *"Giải bài này cho tôi"*, hãy hỏi *"Hãy nhận xét cách giải này của tôi đã tối ưu chưa?"*.
 
-    <h3>2. Tư duy "Trợ lý" (Assistant Mindset)</h3>
-    * Đừng bảo AI: *"Viết cho tôi bài văn về mẹ."* (Sai)
-    * Hãy bảo AI: *"Hãy nhận xét dàn ý bài văn về mẹ của tôi, xem có ý nào sáo rỗng không?"* (Đúng)
-    * **Quy tắc 80/20:** AI làm 80% công việc tay chân (tìm kiếm, sắp xếp), bạn làm 20% công việc cốt lõi (ra quyết định, viết nội dung chính).
+    <h3>2. Phương pháp "Double Check" (Kiểm chứng kép)</h3>
+    Đây là nguyên tắc sống còn khi làm việc với AI:
+    * **Luôn hoài nghi lành mạnh:** Coi AI là một thực tập sinh nhiệt tình nhưng hay mắc lỗi.
+    * **Xác thực thông tin:** Trước khi tiếp nhận bất cứ tri thức, số liệu hay sự kiện lịch sử nào từ AI, hãy nhắc nhở bản thân **BẮT BUỘC** phải đối chiếu lại với Sách giáo khoa (SGK) hoặc các trang báo, tài liệu chính thống đáng tin cậy.
 
-    <h3>3. Phương pháp Sandwich</h3>
-    * **Lớp 1 (Người):** Bạn đưa ra ý tưởng gốc, bối cảnh.
-    * **Lớp 2 (AI):** AI triển khai nháp, sửa lỗi, gợi ý từ vựng.
-    * **Lớp 3 (Người):** Bạn chỉnh sửa lại văn phong cho "có hồn", thêm cảm xúc cá nhân và kiểm duyệt cuối cùng.
+    <h3>3. Quy trình làm việc hiệu quả</h3>
+    * **Kết hợp AI và Con người:** Sử dụng AI cho các tác vụ lặp lại, tìm kiếm thông tin, lên dàn ý (chiếm 80% thời gian), và dành trọn vẹn trí tuệ của bạn cho việc ra quyết định, sáng tạo nội dung cốt lõi và kiểm duyệt (20% giá trị quan trọng nhất).
     `
   },
   'meo-vat': {
-    title: '💡 Mẹo vặt (Prompt Engineering)',
+    title: '💡 Mẹo vặt (Prompt Engineering) từ A-Z',
     content: `
-    <h3>1. Role Prompting (Gán vai trò)</h3>
-    Biến AI thành chuyên gia:
+    <h3>1. Role Prompting (Gán vai trò chuyên gia)</h3>
+    Kỹ thuật này giúp câu trả lời của AI có chiều sâu và đúng ngữ cảnh hơn:
     * *"Hãy đóng vai một giáo viên Vật Lý vui tính, giải thích Định luật Newton sao cho học sinh lớp 10 dễ hiểu nhất."*
-    * *"Đóng vai nhà tuyển dụng, hãy phỏng vấn thử tôi cho vị trí CLB Truyền thông."*
+    * *"Đóng vai nhà tuyển dụng khó tính, hãy phỏng vấn thử tôi cho vị trí thành viên CLB Truyền thông."*
 
-    <h3>2. Chain of Thought (Chuỗi suy nghĩ)</h3>
-    Giúp AI thông minh hơn với các bài toán Logic:
-    * Thêm câu thần chú: *"Hãy suy nghĩ từng bước một (step-by-step) và giải thích logic ở mỗi bước."*
-    
-    <h3>3. Few-Shot Prompting (Cung cấp ví dụ)</h3>
-    AI học rất nhanh qua ví dụ:
-    * *"Tôi muốn tóm tắt tin tức theo phong cách này: [Ví dụ A]. Hãy tóm tắt bài văn sau theo phong cách đó."*
+    <h3>2. Chain of Thought (Chuỗi suy nghĩ logic)</h3>
+    Giúp AI thông minh hơn gấp nhiều lần với các bài toán phức tạp:
+    * Thêm câu thần chú vào cuối câu lệnh: *"Hãy suy nghĩ từng bước một (step-by-step) và giải thích logic ở mỗi bước đi."* Điều này buộc AI phải tư duy chậm lại, giảm thiểu sai sót tính toán.
 
-    <h3>4. Định dạng đầu ra (Formatting)</h3>
-    Tiết kiệm thời gian trình bày:
-    * *"Hãy so sánh Tế bào nhân sơ và nhân thực dưới dạng **Bảng so sánh**."*
-    * *"Hãy liệt kê các ý chính dưới dạng **Bullet point**."*
+    <h3>3. Few-Shot Prompting (Học qua ví dụ)</h3>
+    AI học cực nhanh qua các mẫu có sẵn. Đừng chỉ ra lệnh, hãy đưa mẫu:
+    * *"Tôi muốn tóm tắt tin tức theo phong cách ngắn gọn này: [Dán Ví dụ A vào đây]. Hãy tóm tắt bài văn sau theo đúng phong cách đó cho tôi."*
+
+    <h3>4. Formatting (Định dạng đầu ra)</h3>
+    Tiết kiệm thời gian trình bày và đọc hiểu:
+    * *"Hãy so sánh Tế bào nhân sơ và nhân thực dưới dạng **Bảng so sánh** (gồm cột đặc điểm, giống nhau, khác nhau)."*
+    * *"Hãy liệt kê các ý chính của bài Lịch sử này dưới dạng **Bullet point** (gạch đầu dòng)."*
+
+    <h3>5. Phương pháp Sandwich (Bánh kẹp thịt)</h3>
+    Kỹ thuật đỉnh cao để tạo ra nội dung chất lượng cao nhất:
+    * **Lớp 1 (Vỏ bánh trên - Người):** Bạn đưa ra ý tưởng gốc, bối cảnh, và yêu cầu cụ thể. Đây là định hướng chiến lược.
+    * **Lớp 2 (Nhân thịt - AI):** AI thực hiện công việc nặng nhọc: triển khai nháp, sửa lỗi ngữ pháp, gợi ý từ vựng, mở rộng ý tưởng.
+    * **Lớp 3 (Vỏ bánh dưới - Người):** Bạn chỉnh sửa lại văn phong cho "có hồn", thêm cảm xúc cá nhân, trải nghiệm thực tế và kiểm duyệt độ chính xác cuối cùng.
     `
   }
 };
@@ -741,7 +751,6 @@ function openPanel(id, element) {
     updateContent(data);
     slidingPanel.classList.add('is-open');
     pushableContent.classList.add('is-pushed');
-    // document.body.style.overflow = 'hidden';  <-- ĐÃ XÓA DÒNG NÀY ĐỂ CHO PHÉP CUỘN
   } else {
     panelContentWrapper.classList.add('blur');
     setTimeout(() => {
@@ -763,7 +772,6 @@ function closePanel() {
   document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
   slidingPanel.classList.remove('is-open');
   pushableContent.classList.remove('is-pushed');
-  // document.body.style.overflow = ''; <-- ĐÃ XÓA DÒNG NÀY VÌ KHÔNG CẦN THIẾT NỮA
 }
 
 function handleOutsideClick() {
