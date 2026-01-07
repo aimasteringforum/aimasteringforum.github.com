@@ -12,33 +12,21 @@
 
 <style>
 /* =======================
-   1. VARIABLES & THEME, opt
+   1. VARIABLES & THEME
 ======================= */
 :root {
-  /* Core Colors */
   --bg-body: #0f172a;
   --bg-blob-1: #4f46e5;
   --bg-blob-2: #0ea5e9;
-  
-  /* Glassmorphism Colors */
   --glass-bg: rgba(30, 41, 59, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.05);
-  
-  /* Text Colors */
   --text-main: #e2e8f0;
   --text-heading: #f8fafc;
   --text-muted: #94a3b8;
-  
-  /* Panel Content Colors */
   --panel-bg: rgba(15, 23, 42, 0.95);
   --panel-text: #e2e8f0;
-  
-  /* Accents */
-  --accent-primary: #38bdf8;   /* Cyan Neon */
-  --accent-secondary: #8b5cf6; /* Purple Neon */
-  --accent-glow: 0 0 20px rgba(56, 189, 248, 0.3);
-  
+  --accent-primary: #38bdf8;
   --radius-xl: 24px;
   --radius-md: 16px;
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -48,22 +36,15 @@
   --bg-body: #f0f4f8;
   --bg-blob-1: #c4b5fd;
   --bg-blob-2: #bae6fd;
-  
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.6);
   --glass-highlight: rgba(255, 255, 255, 0.5);
-  
   --text-main: #334155;
   --text-heading: #0f172a;
   --text-muted: #64748b;
-  
-  /* LIGHT MODE PANEL FIX */
   --panel-bg: rgba(255, 255, 255, 0.95);
   --panel-text: #1e293b;
-  
   --accent-primary: #0284c7;
-  --accent-secondary: #7c3aed;
-  --accent-glow: 0 0 15px rgba(2, 132, 199, 0.15);
   --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
@@ -77,22 +58,17 @@ body {
   background-color: var(--bg-body);
   color: var(--text-main);
   min-height: 100vh;
-  /* overflow-x: hidden; -> Bỏ chặn cuộn ngang cứng để tránh lỗi trên một số máy, chỉ ẩn scrollbar */
   overflow-x: clip; 
   position: relative;
+  padding-bottom: 60px; 
 }
 
-/* Blobs */
 body::before, body::after {
   content: ''; position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.6;
   animation: floatBlobs 10s infinite alternate ease-in-out;
 }
-body::before {
-  width: 500px; height: 500px; background: var(--bg-blob-1); top: -100px; left: -100px;
-}
-body::after {
-  width: 400px; height: 400px; background: var(--bg-blob-2); bottom: 0; right: 0; animation-delay: -5s;
-}
+body::before { width: 500px; height: 500px; background: var(--bg-blob-1); top: -100px; left: -100px; }
+body::after { width: 400px; height: 400px; background: var(--bg-blob-2); bottom: 0; right: 0; animation-delay: -5s; }
 
 @keyframes floatBlobs {
   0% { transform: translate(0, 0) scale(1); }
@@ -110,7 +86,6 @@ header {
   display: flex; justify-content: space-between; align-items: center; 
   position: sticky; top: 0; z-index: 1000;
   box-shadow: var(--shadow-glass);
-  transition: all 0.3s ease;
 }
 
 .panel-box { 
@@ -122,14 +97,12 @@ header {
   box-shadow: var(--shadow-glass);
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
-.panel-box:hover {
-  border-color: rgba(255,255,255,0.3);
-}
+.panel-box:hover { border-color: rgba(255,255,255,0.3); }
 
 /* =======================
-   4. LAYOUT & INTERACTIVE
+   4. LAYOUT
 ======================= */
-.school-logo { height: 60px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); transition: all 0.3s ease;}
+.school-logo { height: 60px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
 .header-center { text-align: center; position: absolute; left: 50%; transform: translateX(-50%); width: 100%; pointer-events: none; }
 
 .main-title { 
@@ -138,317 +111,249 @@ header {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
   font-family: 'Orbitron', sans-serif; 
   text-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
-  transition: all 0.3s ease;
 }
-.slogan { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; transition: all 0.3s ease;}
+.slogan { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; }
 
-/* Main Grid Layout */
 .main-grid {
-  display: grid; 
-  grid-template-columns: 280px 1fr; 
-  gap: 24px;
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px;
   max-width: 1400px; margin: 40px auto; padding: 0 20px;
   position: relative;
 }
 
 .left-sidebar { position: relative; z-index: 50; }
 
-/* Pushable Content */
 .pushable-content {
-  display: grid;
-  grid-template-columns: 1fr 320px; 
-  gap: 24px;
+  display: grid; grid-template-columns: 1fr 320px; gap: 24px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s, filter 0.4s;
   transform-origin: left center;
 }
-
 .pushable-content.is-pushed {
-  transform: translateX(10%) scale(0.95); 
-  opacity: 0.3; filter: blur(5px) grayscale(80%);
+  transform: translateX(10%) scale(0.95); opacity: 0.3; filter: blur(5px) grayscale(80%);
   pointer-events: auto; cursor: pointer;
 }
 
 /* Sliding Panel */
 .sliding-panel {
-  position: fixed; top: 0; left: 0; 
-  width: 100%; height: 100%; 
-  background: var(--panel-bg); 
-  color: var(--panel-text);
-  
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background: var(--panel-bg); color: var(--panel-text);
   backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
   border-right: 1px solid var(--accent-primary);
-  padding: 40px;
-  padding-top: 80px; 
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  z-index: 2000; 
-  opacity: 0; transform: translateX(-100px) scale(0.95);
+  padding: 40px; padding-top: 80px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  z-index: 2000; opacity: 0; transform: translateX(-100px) scale(0.95);
   pointer-events: none; visibility: hidden;
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  
-  /* Cho phép cuộn bên trong Panel */
-  overflow-y: auto; 
-  -webkit-overflow-scrolling: touch; 
-  padding-bottom: 100px; 
+  overflow-y: auto; padding-bottom: 100px; 
 }
 
-/* Desktop override cho sliding panel */
 @media (min-width: 1025px) {
   .sliding-panel {
     position: absolute; top: 0; left: 304px;
-    width: calc(100% - 304px); max-width: 850px; 
-    
-    /* Cố định chiều cao và cho phép cuộn */
-    height: 85vh; 
-    max-height: 800px; 
-    overflow-y: auto;
-    
-    border-radius: var(--radius-xl);
-    padding: 40px;
+    width: calc(100% - 304px); max-width: 850px; height: 85vh; max-height: 800px;
+    border-radius: var(--radius-xl); padding: 40px;
     transform: translateX(-50px) rotateY(10deg) scale(0.9);
     transform-style: preserve-3d; perspective: 1000px;
   }
 }
-
-.sliding-panel.is-open {
-  opacity: 1; transform: translateX(0) rotateY(0) scale(1);
-  pointer-events: auto; visibility: visible;
-}
+.sliding-panel.is-open { opacity: 1; transform: translateX(0) rotateY(0) scale(1); pointer-events: auto; visibility: visible; }
 
 /* =======================
    5. COMPONENT STYLES
 ======================= */
 .panel-header { 
-  border-bottom: 1px solid var(--glass-border); 
-  padding-bottom: 15px; margin-bottom: 20px; 
-  font-size: 14px; font-weight: 800; color: var(--text-muted); 
-  text-transform: uppercase; letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; margin-bottom: 20px; 
+  font-size: 14px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px;
   display: flex; align-items: center; gap: 10px; 
 }
-.panel-header i { color: var(--accent-primary); filter: drop-shadow(0 0 5px var(--accent-primary)); }
+.panel-header i { color: var(--accent-primary); }
 
-.menu-grid-wrapper { display: block; }
-
+/* --- NÂNG CẤP MENU CARD (LÝ THUYẾT) --- */
 .mini-card { 
-  background: var(--glass-highlight); 
-  border: 1px solid transparent; 
-  padding: 16px; border-radius: var(--radius-md); 
-  margin-bottom: 12px; cursor: pointer; 
-  display: flex; align-items: center; gap: 15px; 
-  transition: all 0.3s ease; position: relative; overflow: hidden;
+  background: var(--glass-highlight); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; cursor: pointer; 
+  display: flex; align-items: center; gap: 15px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  border: 1px solid transparent; position: relative; overflow: hidden;
+}
+.mini-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--card-color, #ccc); transition: 0.3s;
 }
 .mini-card:hover { 
-  background: rgba(255,255,255,0.1); 
-  transform: translateX(5px);
-  border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08); 
+    transform: translateX(8px) scale(1.02); 
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
-.mini-card.active-tab { 
-  background: linear-gradient(90deg, rgba(56, 189, 248, 0.15) 0%, transparent 100%);
-  border-left: 4px solid var(--accent-primary);
-  box-shadow: var(--accent-glow);
-}
-.mini-card h4 { color: var(--text-heading); font-size: 15px; font-weight: 600; margin-bottom: 2px; }
 .mini-card i { 
-  font-size: 20px; width: 30px; text-align: center; 
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-size: 22px; width: 35px; text-align: center; 
+  color: var(--card-color, #ccc);
+  text-shadow: 0 0 15px var(--card-color);
+  transition: 0.3s;
+}
+.mini-card h4 { color: var(--text-heading); font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+
+/* Các biến màu cho từng loại thẻ */
+.card-blue   { --card-color: #38bdf8; }
+.card-red    { --card-color: #f43f5e; }
+.card-green  { --card-color: #10b981; }
+.card-yellow { --card-color: #f59e0b; }
+
+/* --- NÂNG CẤP VISUAL BOX (TRANH TÀI) --- */
+.visual-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.visual-box {
+    position: relative; height: 140px; border-radius: var(--radius-md);
+    overflow: hidden; cursor: pointer; border: 1px solid var(--glass-border);
+    transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 15px; background-size: cover; background-position: center;
+}
+.visual-box::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+    z-index: 1; transition: 0.3s;
+}
+.visual-box:hover {
+    transform: translateY(-5px); border-color: var(--box-color);
+    box-shadow: 0 10px 30px -5px var(--box-glow);
+}
+.visual-box:hover::after { opacity: 0.8; }
+
+.visual-content { position: relative; z-index: 2; text-align: center; }
+.visual-icon-float {
+    position: absolute; top: 15px; right: 15px; font-size: 30px; z-index: 2;
+    color: rgba(255,255,255,0.8); transition: 0.4s;
+}
+.visual-box:hover .visual-icon-float { transform: scale(1.2) rotate(-10deg); color: var(--box-color); }
+
+.vb-quiz { 
+    --box-color: #8b5cf6; --box-glow: rgba(139, 92, 246, 0.4);
+    background-image: url('https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg');
+}
+.vb-poster { 
+    --box-color: #f43f5e; --box-glow: rgba(244, 63, 94, 0.4);
+    background-image: url('https://img.freepik.com/free-vector/abstract-colorful-fluid-background_23-2148901720.jpg');
 }
 
-/* Gallery & Lightbox */
-.gallery-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; width: 100%;
+.visual-label { 
+    font-weight: 800; font-size: 14px; color: white; text-transform: uppercase; letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
+
+/* Gallery */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
 .gallery-item {
-    position: relative; border-radius: var(--radius-md); overflow: hidden;
-    cursor: zoom-in; border: 1px solid var(--glass-border);
-    background: rgba(0,0,0,0.2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    aspect-ratio: 1/1; 
+    position: relative; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in;
+    border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); aspect-ratio: 1/1; 
 }
-.gallery-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease; opacity: 0.9;
-}
-.gallery-item:hover {
-    border-color: var(--accent-primary); box-shadow: var(--accent-glow);
-    transform: scale(1.02); z-index: 10;
-}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; opacity: 0.9; }
+.gallery-item:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-primary); z-index: 10; transform: scale(1.05); }
 .gallery-item:hover img { opacity: 1; }
 
+/* Lightbox */
 .lightbox-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px);
-    z-index: 9999; display: none; justify-content: center; align-items: center;
-    opacity: 0; transition: opacity 0.3s ease;
+    z-index: 9999; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
 }
 .lightbox-overlay.active { display: flex; opacity: 1; }
-.lightbox-img {
-    max-width: 95vw; max-height: 80vh; border-radius: 8px;
-    box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
-    transition: transform 0.3s ease; cursor: zoom-in;
-}
+.lightbox-img { max-width: 95vw; max-height: 80vh; border-radius: 8px; transition: transform 0.3s ease; cursor: zoom-in; }
 .lightbox-close-btn {
-    position: absolute; top: 40px; right: 30px;
-    font-size: 40px; color: white; cursor: pointer;
-    z-index: 10000; opacity: 0.8; 
-    width: 50px; height: 50px; text-align: center; line-height: 50px;
-    background: rgba(255,255,255,0.1); border-radius: 50%;
+    position: absolute; top: 40px; right: 30px; font-size: 40px; color: white; cursor: pointer; z-index: 10000;
+    width: 50px; height: 50px; text-align: center; line-height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%;
 }
 
-/* Typography & Content */
-.content-wrapper { transition: opacity 0.3s, filter 0.3s; max-width: 800px; margin: 0 auto; }
-.content-wrapper.blur { filter: blur(5px); opacity: 0.5; }
-.content-title { 
-  font-size: 28px; font-weight: 700; color: var(--text-heading); 
-  margin-bottom: 20px; padding-bottom: 20px; 
-  border-bottom: 1px dashed var(--glass-border);
-  font-family: 'Be Vietnam Pro', sans-serif;
-  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-  line-height: 1.4;
-}
-.content-body { 
-  font-size: 16px; line-height: 1.8; color: var(--panel-text); 
-  white-space: pre-line; font-weight: 300;
-}
-.content-body strong { color: var(--accent-primary); font-weight: 600; }
-.content-body h3 {
-    margin-top: 30px; margin-bottom: 15px; color: var(--accent-secondary);
-    font-size: 19px; font-weight: 700; text-transform: uppercase;
-    border-left: 3px solid var(--accent-secondary); padding-left: 10px;
-}
-.content-body ul { margin-left: 10px; list-style-type: none; }
-.content-body li { position: relative; margin-bottom: 12px; padding-left: 20px; }
-.content-body li::before {
-    content: '•'; color: var(--accent-primary); position: absolute; left: 0; font-weight: bold; font-size: 18px; line-height: 1.6;
-}
-
+/* Content Panel */
+.content-title { font-size: 28px; font-weight: 700; color: var(--text-heading); margin-bottom: 20px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 20px; }
+.content-body { font-size: 16px; line-height: 1.8; color: var(--panel-text); white-space: pre-line; }
+.content-body strong { color: var(--accent-primary); }
+.content-body h3 { margin-top: 30px; color: var(--accent-secondary); border-left: 3px solid var(--accent-secondary); padding-left: 10px; }
 .btn-close-panel {
-  position: absolute; top: 25px; right: 25px;
-  width: 44px; height: 44px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--text-heading); border: 1px solid var(--glass-border); 
-  transition: 0.3s; backdrop-filter: blur(5px); z-index: 10;
+  position: absolute; top: 25px; right: 25px; width: 44px; height: 44px; background: rgba(255,255,255,0.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--glass-border); 
 }
-.btn-close-panel:hover { background: #ef4444; border-color: #ef4444; color: white; transform: rotate(90deg); }
+.btn-close-panel:hover { background: #ef4444; color: white; }
 
-/* Social & Banners */
+/* Social & Timeline */
 .social-banner { 
-  padding: 16px 20px; border-radius: var(--radius-md); 
-  display: flex; justify-content: space-between; align-items: center; 
-  color: white; margin-bottom: 12px; text-decoration: none; 
-  transition: all 0.3s; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 20px; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; 
+  color: white; margin-bottom: 12px; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
 }
-.social-banner:not(.locked):hover { transform: translateX(5px); filter: brightness(1.2); }
-.social-banner.locked { opacity: 0.6; cursor: not-allowed; filter: grayscale(0.8); }
+.social-banner:hover { transform: translateX(5px); filter: brightness(1.2); }
+.discord-bg { background: linear-gradient(135deg, #5865F2, #404EED); box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); }
+.tiktok-bg { background: linear-gradient(135deg, #000000, #25F4EE); box-shadow: 0 4px 15px rgba(37, 244, 238, 0.2); }
+.fb-bg { background: linear-gradient(135deg, #1877F2, #0C46A6); box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3); }
 
-.discord-bg { background: linear-gradient(135deg, rgba(88, 101, 242, 0.8) 0%, rgba(88, 101, 242, 0.4) 100%); }
-.tiktok-bg { background: linear-gradient(135deg, rgba(30, 30, 30, 0.9) 0%, rgba(50, 50, 50, 0.5) 100%); }
-.fb-bg { background: linear-gradient(135deg, rgba(24, 119, 242, 0.8) 0%, rgba(24, 119, 242, 0.4) 100%); }
-
-/* Timeline & Noti */
-.timeline-item { 
-  position: relative; padding-left: 20px; margin-bottom: 25px; 
-  border-left: 2px solid var(--glass-border); 
-}
+.timeline-item { position: relative; padding-left: 20px; margin-bottom: 25px; border-left: 2px solid var(--glass-border); }
 .timeline-item::before {
   content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px;
-  background: var(--accent-primary); border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-primary);
+  background: var(--accent-primary); border-radius: 50%; box-shadow: 0 0 10px var(--accent-primary);
 }
 .time-badge { 
-  display: inline-block; background: rgba(14, 165, 233, 0.15); 
-  color: var(--accent-primary); font-size: 11px; font-weight: 700; 
-  padding: 4px 10px; border-radius: 20px; margin-bottom: 6px; 
-  border: 1px solid rgba(14, 165, 233, 0.3);
+  display: inline-block; background: rgba(14, 165, 233, 0.15); color: var(--accent-primary);
+  font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 6px; 
 }
-
-.notification-box { 
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05)); 
-  border: 1px solid rgba(249, 115, 22, 0.3); 
-  padding: 20px; border-radius: var(--radius-md); 
-  display: flex; align-items: center; gap: 15px; 
-  color: var(--text-heading); position: relative; overflow: hidden;
+.btn-download-doc {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;
+    padding: 6px 12px; font-size: 13px; font-weight: 600; color: #fff;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-radius: 8px; text-decoration: none; transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
 }
-.notification-box::after { content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%; background: #f97316; }
+.btn-download-doc:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.5); }
 
 /* Switch */
-.theme-switch-wrapper { display: flex; align-items: center; }
-.theme-switch { display: inline-block; height: 26px; position: relative; width: 46px; }
+.theme-switch { display: inline-block; height: 26px; width: 46px; position: relative; }
 .theme-switch input { display:none; }
-.slider { background-color: rgba(255,255,255,0.2); bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; border: 1px solid var(--glass-border); }
-.slider:before { background-color: #fff; bottom: 3px; content: ""; height: 18px; left: 3px; position: absolute; transition: .4s; width: 18px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-input:checked + .slider { background-color: var(--accent-secondary); border-color: var(--accent-secondary); }
+.slider { background-color: rgba(255,255,255,0.2); position: absolute; top:0; bottom:0; left:0; right:0; transition: .4s; border-radius: 34px; border: 1px solid var(--glass-border); cursor: pointer; }
+.slider:before { background-color: #fff; content: ""; height: 18px; width: 18px; position: absolute; left: 3px; bottom: 3px; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--accent-primary); }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* ===========================================
-   6. RESPONSIVE FIX
-=========================================== */
+/* Carousel Styles */
+.carousel-section { max-width: 1400px; margin: 0 auto 40px; padding: 0 20px; }
+.carousel-wrapper {
+    position: relative; overflow: hidden; border-radius: var(--radius-xl);
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass); backdrop-filter: blur(16px);
+    aspect-ratio: 21/9; 
+}
+@media (max-width: 768px) { .carousel-wrapper { aspect-ratio: 16/9; } }
+.carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+.carousel-slide { min-width: 100%; height: 100%; position: relative; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-caption {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 30px 20px 20px; color: white; opacity: 0; transition: opacity 0.4s ease;
+}
+.carousel-wrapper:hover .carousel-caption { opacity: 1; }
+.carousel-nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px; border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white; font-size: 20px; cursor: pointer; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; opacity: 0;
+}
+.carousel-wrapper:hover .carousel-nav-btn { opacity: 1; }
+.carousel-nav-btn:hover { background: var(--accent-primary); border-color: var(--accent-primary); transform: translateY(-50%) scale(1.1); }
+.prev-btn { left: 20px; } .next-btn { right: 20px; }
+.carousel-indicators {
+    position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s ease; }
+.dot.active { width: 24px; border-radius: 10px; background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary); }
 
+/* Responsive */
 @media (max-width: 1024px) {
-  .main-grid { 
-      grid-template-columns: 1fr; 
-      margin: 20px auto;
-  }
-  
-  .menu-grid-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr; 
-      gap: 12px;
-  }
-  .mini-card { margin-bottom: 0; height: 100%; }
-  
+  .main-grid { grid-template-columns: 1fr; }
+  .menu-grid-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .sliding-panel { width: 100%; max-width: none; border-radius: 0; border-left: none; }
-  
-  .pushable-content {
-      grid-template-columns: 1fr; 
-  }
-  
-  .pushable-content.is-pushed {
-    transform: scale(0.95); 
-  }
+  .pushable-content { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 768px) {
-  header { 
-    height: 65px; 
-    flex-direction: row; 
-    padding: 0 15px;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .header-center { 
-    position: static; transform: none; 
-    flex: 1; text-align: left; padding-left: 10px;
-  }
-  .school-logo { height: 35px; }
-  .main-title { font-size: 18px; letter-spacing: 1px; margin-bottom: 0; }
-  .slogan { display: none; } 
-  
-  .panel-box { padding: 16px; border-radius: 16px; margin-bottom: 16px; }
-  .panel-header { font-size: 13px; margin-bottom: 12px; padding-bottom: 10px; }
-
-  body { font-size: 14px; }
-  .mini-card h4 { font-size: 13px; }
-  .mini-card small { font-size: 11px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mini-card i { font-size: 18px; width: 20px; }
-  .mini-card { padding: 12px; gap: 10px; }
-
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .social-banner { padding: 12px 15px; }
-  .social-banner h4 { font-size: 14px; }
-  .social-banner small { font-size: 11px; }
-
-  .sliding-panel { padding: 20px; padding-top: 70px; }
-  .content-title { font-size: 22px; margin-bottom: 15px; padding-bottom: 15px; }
-  .content-body h3 { font-size: 17px; margin-top: 20px; }
-  .content-body { font-size: 15px; line-height: 1.6; }
-  
-  .btn-close-panel { top: 15px; right: 15px; width: 40px; height: 40px; background: rgba(200,200,200,0.1); }
+  header { padding: 0 15px; } .school-logo { height: 35px; } .main-title { font-size: 18px; } .slogan { display: none; }
+  .gallery-grid { gap: 8px; }
 }
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 </style>
 </head>
 
@@ -484,57 +389,49 @@ input:checked + .slider:before { transform: translateX(20px); }
       <div class="panel-header"><i class="fa-solid fa-graduation-cap"></i> Lý thuyết</div>
       
       <div class="menu-grid-wrapper">
-        <div class="mini-card" onclick="openPanel('uu-diem', this)">
+        <div class="mini-card card-blue" onclick="openPanel('uu-diem', this)">
           <i class="fa-solid fa-bolt"></i>
-          <div style="overflow: hidden;">
-            <h4>Ưu điểm AI</h4>
-            <small class="text-truncate">Hiệu quả & Nhanh</small>
-          </div>
+          <div><h4>Ưu điểm AI</h4><small>Hiệu quả & Nhanh</small></div>
         </div>
-        <div class="mini-card" onclick="openPanel('han-che', this)">
+        <div class="mini-card card-red" onclick="openPanel('han-che', this)">
           <i class="fa-solid fa-shield-halved"></i>
-           <div style="overflow: hidden;">
-            <h4>Hạn chế</h4>
-            <small class="text-truncate">Rủi ro & Sai lệch</small>
-          </div>
+          <div><h4>Hạn chế</h4><small>Rủi ro & Sai lệch</small></div>
         </div>
-        <div class="mini-card" onclick="openPanel('kinh-nghiem', this)">
+        <div class="mini-card card-green" onclick="openPanel('kinh-nghiem', this)">
           <i class="fa-solid fa-book-open"></i>
-           <div style="overflow: hidden;">
-            <h4>Kinh nghiệm</h4>
-            <small class="text-truncate">Phương pháp chuẩn</small>
-          </div>
+          <div><h4>Kinh nghiệm</h4><small>Phương pháp chuẩn</small></div>
         </div>
-        <div class="mini-card" onclick="openPanel('meo-vat', this)">
+        <div class="mini-card card-yellow" onclick="openPanel('meo-vat', this)">
           <i class="fa-solid fa-lightbulb"></i>
-           <div style="overflow: hidden;">
-            <h4>Mẹo vặt</h4>
-            <small class="text-truncate">Prompt Engineering</small>
-          </div>
+          <div><h4>Mẹo vặt</h4><small>Kỹ thuật viết lệnh</small></div>
         </div>
       </div>
-
-      <div class="product-zone" style="border-top: 1px dashed var(--glass-border); padding-top: 20px; margin-top: 20px;">
+      
+      <div style="border-top: 1px dashed var(--glass-border); padding-top: 20px; margin-top: 20px;">
         <div class="panel-header"><i class="fa-solid fa-trophy"></i> Tranh tài</div>
-        <div class="menu-grid-wrapper">
-            <div class="mini-card" onclick="window.open('https://wayground.com/join/quiz/694a3042e6f90ed46c69deb1/start?studentShare=true', '_blank')">
-              <i class="fa-solid fa-magnifying-glass-chart"></i>
-              <h4>Đánh giá AI</h4>
+        
+        <div class="visual-grid">
+            <div class="visual-box vb-quiz" onclick="window.open('https://wayground.com/join/quiz/694a3042e6f90ed46c69deb1/start?studentShare=true', '_blank')">
+                <i class="fa-solid fa-magnifying-glass-chart visual-icon-float"></i>
+                <div class="visual-content">
+                    <div class="visual-label">Đánh giá AI</div>
+                </div>
             </div>
-            <div class="mini-card" onclick="window.open('https://google.com', '_blank')">
-              <i class="fa-solid fa-image"></i>
-              <h4>Poster</h4>
+            
+            <div class="visual-box vb-poster" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSfnF2PgM_3gO-sC4dm23oUji7W6pi5XWXQDFC0ZWiCA337Yjw/viewform', '_blank')">
+                <i class="fa-solid fa-palette visual-icon-float"></i>
+                <div class="visual-content">
+                     <div class="visual-label">Thi Poster</div>
+                </div>
             </div>
         </div>
+
       </div>
     </div>
   </aside>
 
   <div id="slidingPanel" class="sliding-panel">
-    <div class="btn-close-panel" onclick="closePanel()">
-      <i class="fa-solid fa-xmark"></i>
-    </div>
-    
+    <div class="btn-close-panel" onclick="closePanel()"><i class="fa-solid fa-xmark"></i></div>
     <div id="panelContentWrapper" class="content-wrapper">
       <h2 id="panelTitle" class="content-title"></h2>
       <div id="panelBody" class="content-body"></div>
@@ -546,7 +443,6 @@ input:checked + .slider:before { transform: translateX(20px); }
     <main class="center-col">
       <div class="panel-box">
         <div class="panel-header"><i class="fa-solid fa-images"></i> Tác phẩm nổi bật</div>
-        
         <div class="gallery-grid">
             <div class="gallery-item" onclick="openImage('1.png')"><img src="1.png" alt="Art 1" onerror="this.src='https://via.placeholder.com/300/4f46e5/ffffff?text=Art+1'"></div>
             <div class="gallery-item" onclick="openImage('2.png')"><img src="2.png" alt="Art 2" onerror="this.src='https://via.placeholder.com/300/0ea5e9/ffffff?text=Art+2'"></div>
@@ -560,20 +456,12 @@ input:checked + .slider:before { transform: translateX(20px); }
       <div class="panel-box">
         <div class="panel-header"><i class="fa-solid fa-users"></i> Cộng đồng</div>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-            
-            <a href="javascript:void(0)" onclick="notifyLocked()" class="social-banner discord-bg locked">
-              <div><h4><i class="fa-brands fa-discord"></i> Discord</h4><small>Thảo luận 24/7 (Bảo trì)</small></div>
-              <i class="fa-solid fa-lock"></i>
-            </a>
-
-            <a href="https://www.tiktok.com/@forum.amf?_r=1&_t=ZS-92S8noUqa5C" target="_blank" class="social-banner tiktok-bg">
-              <div><h4><i class="fa-brands fa-tiktok"></i> TikTok</h4><small>Video ngắn</small></div>
+            <a href="https://discord.gg/7MAJa2wHV7" target="_blank" class="social-banner discord-bg">
+              <div><h4><i class="fa-brands fa-discord"></i> Discord</h4><small>Thảo luận 24/7</small></div>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
-             <a href="https://www.facebook.com/profile.php?id=61585745061769" target="_blank" class="social-banner fb-bg">
-              <div><h4><i class="fa-brands fa-facebook"></i> Facebook</h4><small>Tin tức mới</small></div>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="https://www.tiktok.com/@forum.amf" target="_blank" class="social-banner tiktok-bg"><div><h4><i class="fa-brands fa-tiktok"></i> TikTok</h4><small>Video ngắn</small></div><i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61585745061769" target="_blank" class="social-banner fb-bg"><div><h4><i class="fa-brands fa-facebook"></i> Facebook</h4><small>Tin tức mới</small></div><i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </main>
@@ -582,6 +470,16 @@ input:checked + .slider:before { transform: translateX(20px); }
       <div class="panel-box">
         <div class="panel-header"><i class="fa-regular fa-calendar-check"></i> Kế hoạch</div>
         
+        <div class="timeline-item">
+            <span class="time-badge">Năm học 2025 - 2026</span>
+            <div style="font-weight:700; color:var(--text-heading); margin-bottom:5px;">
+                Sinh hoạt AMF (AI mastering forum) nâng cao nhận thức và điều chỉnh hành vi sử dụng trí tuệ nhân tạo (AI) trong học tập của học sinh Trung học phổ thông
+            </div>
+            <a href="KHHD CLB.docx" target="_blank" class="btn-download-doc">
+                <i class="fa-solid fa-file-word"></i> Xem chi tiết kế hoạch
+            </a>
+        </div>
+
         <div class="timeline-item">
             <span class="time-badge">20 - 29/12/2025</span>
             <div style="font-weight:700; color:var(--text-heading)">Cuộc thi Poster lần 1</div>
@@ -599,25 +497,77 @@ input:checked + .slider:before { transform: translateX(20px); }
             <div style="font-weight:700; color:var(--text-heading)">Công bố & Tuyên truyền</div>
             <div style="font-size:13px; color:var(--text-muted)">Chọn poster thắng giải</div>
         </div>
-
       </div>
 
       <div class="panel-box">
         <div class="panel-header"><i class="fa-solid fa-bell"></i> Thông báo</div>
-        <div class="notification-box">
-          <i class="fa-solid fa-bullhorn" style="color: #f97316; font-size: 24px; filter: drop-shadow(0 0 5px #f97316);"></i> 
+        <div class="notification-box" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.05)); border: 1px solid rgba(249, 115, 22, 0.4); padding: 20px; border-radius: 16px; display: flex; align-items: center; gap: 15px; animation: pulseBorder 2s infinite;">
+          <i class="fa-solid fa-bullhorn" style="color: #f97316; font-size: 24px;"></i> 
           <div>
              <div style="font-size: 10px; color:var(--text-muted); letter-spacing:1px; font-weight:700">QUAN TRỌNG</div>
-             <a href="#" style="color: #fb923c; font-weight:700; text-decoration:none;">Link tham gia khảo sát</a>
+             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeSxjzWdwoRuJ2Y6rus6v6_TNoBU7b4cLT5yDHh7fU12ZfGw/viewform?usp=preview" target="_blank" style="color: #fb923c; font-weight:700; text-decoration:none;">Link tham gia khảo sát</a>
           </div>
         </div>
+        <style>@keyframes pulseBorder { 0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); } 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); } }</style>
       </div>
     </aside>
 
-  </div> </div>
+  </div> 
+</div>
+
+<div class="carousel-section">
+    <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack"></div>
+        <button class="carousel-nav-btn prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-nav-btn next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </div>
+</div>
 
 <script>
-// --- LOGIC LIGHTBOX ---
+// --- CAROUSEL LOGIC ---
+const totalImages = 12; 
+const track = document.getElementById('carouselTrack');
+const indicatorsContainer = document.getElementById('carouselIndicators');
+let currentSlide = 0;
+let autoPlayInterval;
+
+function initCarousel() {
+    for (let i = 1; i <= totalImages; i++) {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `
+            <img src="anh_${i}.jpg" alt="Hoạt động AMF ${i}" onerror="this.src='https://via.placeholder.com/1400x600/1e293b/ffffff?text=Image+${i}'">
+            <div class="carousel-caption"><h3>Hoạt động nổi bật #${i}</h3></div>
+        `;
+        track.appendChild(slide);
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === 1 ? 'active' : ''}`;
+        dot.onclick = () => goToSlide(i - 1);
+        indicatorsContainer.appendChild(dot);
+    }
+}
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+        if (index === currentSlide) dot.classList.add('active');
+        else dot.classList.remove('active');
+    });
+}
+function moveSlide(direction) {
+    currentSlide += direction;
+    if (currentSlide >= totalImages) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = totalImages - 1;
+    updateCarousel(); resetTimer();
+}
+function goToSlide(index) { currentSlide = index; updateCarousel(); resetTimer(); }
+function startTimer() { autoPlayInterval = setInterval(() => { moveSlide(1); }, 5000); }
+function resetTimer() { clearInterval(autoPlayInterval); startTimer(); }
+
+initCarousel();
+startTimer();
+
+// --- LIGHTBOX LOGIC ---
 const lightbox = document.getElementById('imageLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 let currentScale = 1;
@@ -628,11 +578,7 @@ function openImage(src) {
     lightboxImg.style.cursor = 'zoom-in';
     document.body.style.overflow = 'hidden'; 
 }
-function closeImage() { 
-    lightbox.classList.remove('active'); 
-    document.body.style.overflow = ''; 
-}
-
+function closeImage() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
 lightboxImg.addEventListener('click', function(e) {
     e.stopPropagation();
     if(currentScale === 1) { currentScale = 2.5; this.style.cursor = 'zoom-out'; }
@@ -640,99 +586,45 @@ lightboxImg.addEventListener('click', function(e) {
     this.style.transform = `scale(${currentScale})`;
 });
 
-// --- LOGIC DISCORD LOCKED ---
-function notifyLocked() {
-    alert("Hệ thống đang bảo trì để nâng cấp giao diện phù hợp hơn với học sinh. Vui lòng quay lại sau!");
-}
-
-// --- NỘI DUNG AI STARTER PACK (Đã cập nhật chi tiết từ A-Z) ---
 const contentData = {
   'uu-diem': {
-    title: '⚡ Ưu điểm vượt trội của AI trong Giáo dục',
-    content: `
-    <h3>1. Gia sư 24/7 & Giải pháp tức thì</h3>
-    Trong kỷ nguyên số, AI đóng vai trò như một người bạn đồng hành không bao giờ mệt mỏi:
-    * **Giải đáp thắc mắc mọi lúc mọi nơi:** Học sinh không còn phải chờ đợi đến giờ lên lớp để hỏi giáo viên. Mọi câu hỏi hóc búa đều có thể được giải đáp ngay lập tức, giúp mạch tư duy không bị đứt đoạn.
-    * **Tăng cường sự thông suốt:** Việc được giải thích ngay lập tức giúp học sinh lấp đầy lỗ hổng kiến thức ngay khi nó xuất hiện.
-    * **Ứng dụng thực tiễn:** Các công cụ như **Qanda** hay Photomath sử dụng công nghệ OCR kết hợp AI, cho phép giải bài tập Toán/Lý/Hóa chi tiết và dễ hiểu chỉ qua một lần chụp ảnh đơn giản.
-
-    <h3>2. Kho tàng tri thức & Hiệu suất cao</h3>
-    Khả năng truy cập và xử lý dữ liệu của AI vượt xa các phương pháp tìm kiếm truyền thống:
-    * **Truy cập tri thức vô tận:** Chỉ cần vài câu lệnh đơn thuần, AI giúp học sinh tiếp cận nguồn tài liệu khổng lồ từ khắp nơi trên thế giới ngay tại nhà.
-    * **Câu trả lời trọng tâm:** Khác với Google (trả về hàng loạt đường link và bắt bạn tự lọc), AI tổng hợp và đưa ra câu trả lời ngắn gọn, đi thẳng vào vấn đề, giúp tiết kiệm hàng giờ đồng hồ tìm kiếm lan man.
-    * **Trực quan hóa sinh động:** AI có khả năng mô phỏng kiến thức bằng hình ảnh, sơ đồ tư duy (Mindmap), hoặc thậm chí tạo ra các video minh họa, biến những lý thuyết khô khan trở nên dễ nhớ hơn bao giờ hết.
-
-    <h3>3. Cá nhân hóa & Định hướng tương lai</h3>
-    AI không chỉ dạy học, mà còn giúp bạn học thông minh hơn:
-    * **Lộ trình học tập riêng biệt:** Dựa trên dữ liệu về điểm mạnh/yếu của từng cá nhân, AI có thể đề xuất một lộ trình ôn luyện phù hợp nhất, tránh việc học dàn trải không hiệu quả.
-    * **Hỗ trợ ra quyết định:** Từ việc chọn khối thi, chọn ngành nghề cho đến phương pháp học, AI cung cấp các phân tích dữ liệu để học sinh đưa ra quyết định đúng đắn hơn.
-    * **Ôn thi thông minh:** Các Chatbot như ChatGPT có thể đóng vai trò giáo viên, giúp xây dựng đề cương ôn tập, tạo đề luyện thi sát với ma trận đề thi thật, giúp học sinh chuẩn bị tâm thế tốt nhất cho các kỳ thi quan trọng.
-    `
+    title: '⚡ Ưu điểm vượt trội của AI trong học tập',
+    content: `<h3>1. Gia sư 24/7 & Giải pháp tức thì</h3>
+    * **Giải đáp thắc mắc mọi lúc:** Hỏi là có đáp án ngay.
+    * **Ứng dụng thực tiễn:** OCR giải Toán/Lý/Hóa qua ảnh.
+    <h3>2. Kho tàng tri thức</h3>
+    * **Truy cập vô tận:** Tổng hợp thông tin ngắn gọn, bỏ qua bước lọc Google.
+    * **Trực quan hóa:** Tạo sơ đồ tư duy, hình ảnh minh họa.
+    <h3>3. Cá nhân hóa</h3>
+    * **Lộ trình riêng:** Đề xuất cách học dựa trên điểm mạnh/yếu.
+    * **Ôn thi thông minh:** Tạo đề thi thử sát thực tế.`
   },
   'han-che': {
-    title: '🛡️ Hạn chế & Những cạm bẫy cần tránh',
-    content: `
-    <h3>1. Ảo giác AI (Hallucination) & Sai lệch thông tin</h3>
-    Dù sở hữu trí tuệ siêu việt, AI vẫn chỉ là một cỗ máy dự đoán từ ngữ:
-    * **Lỗ hổng kiến thức:** Trên mạng internet vẫn lan truyền nhiều thông tin sai lệch (Fake News), và AI có thể học nhầm những dữ liệu đó. Điều này dẫn đến việc AI cung cấp tri thức có vẻ rất thuyết phục nhưng lại sai hoàn toàn về mặt bản chất.
-    * **Nguy cơ tiếp thu lệch lạc:** Nếu không có nền tảng kiến thức vững chắc để đối chiếu, học sinh rất dễ tin tưởng tuyệt đối vào AI, dẫn đến việc tiếp thu và ghi nhớ những kiến thức sai, gây hậu quả nghiêm trọng trong thi cử.
-
-    <h3>2. Sự phụ thuộc & Thui chột tư duy</h3>
-    Đây là con dao hai lưỡi nguy hiểm nhất của công nghệ:
-    * **Hội chứng "Lười tư duy":** Khi đáp án có sẵn chỉ sau một cú click chuột, não bộ sẽ dần hình thành thói quen ỷ lại. Học sinh có thể bị phụ thuộc hoàn toàn vào AI, dẫn đến mất khả năng tư duy phản biện và giải quyết vấn đề độc lập.
-    * **Kết quả trì trệ:** Sự phụ thuộc này sẽ kiềm hãm đà phát triển tự nhiên của năng lực, khiến kết quả học tập thực tế ngày càng đi xuống dù bài tập về nhà luôn hoàn thành điểm cao.
-
-    <h3>3. Vấn đề Đạo đức & Bảo mật</h3>
-    Sử dụng AI đòi hỏi một tinh thần trách nhiệm cao:
-    * **Thiếu bản sắc cá nhân:** Các sản phẩm (bài văn, tranh vẽ) do AI tạo ra hoàn toàn thường rất thô cứng, thiếu cảm xúc và "phần hồn" riêng biệt của con người.
-    * **Rủi ro bảo mật:** Việc cung cấp thông tin cá nhân (tên tuổi, trường lớp, hình ảnh) cho AI có thể dẫn đến nguy cơ dữ liệu bị rò rỉ và lạm dụng cho các mục đích xấu.
-    * **Cám dỗ gian lận:** Sự tiện ích quá mức của AI có thể thôi thúc học sinh thực hiện các hành vi sai lệch chuẩn mực đạo đức, như gian lận trong thi cử hay nhờ AI làm bài hộ thay vì tự học.
-    `
+    title: '🛡️ Hạn chế & Cạm bẫy cần tránh',
+    content: `<h3>1. Ảo giác AI</h3>
+    * **Thông tin sai lệch:** AI có thể bịa đặt thông tin rất thuyết phục.
+    <h3>2. Sự phụ thuộc</h3>
+    * **Lười tư duy:** Ỷ lại vào AI làm mất khả năng giải quyết vấn đề.
+    <h3>3. Đạo đức</h3>
+    * **Gian lận:** Dùng AI làm bài hộ là vi phạm đạo đức học đường.`
   },
   'kinh-nghiem': {
     title: '📖 Kinh nghiệm sử dụng AI khôn ngoan',
-    content: `
-    <h3>1. Tư duy làm chủ công nghệ</h3>
-    Đừng để AI trở thành "ông chủ" của bạn, hãy biến nó thành "trợ lý đắc lực":
-    * **Không sao chép - Hãy thấu hiểu:** Tuyệt đối không copy-paste nguyên văn câu trả lời của AI vào bài làm. Hãy đọc để hiểu logic, nắm bắt ý tưởng, sau đó tự diễn đạt lại bằng ngôn ngữ và tư duy của chính mình.
-    * **Công cụ hỗ trợ, không phải người làm thay:** Hãy tự giải bài tập trước, sau đó mới dùng AI như một công cụ để so sánh đáp án hoặc tìm cách giải hay hơn. Thay vì bảo *"Giải bài này cho tôi"*, hãy hỏi *"Hãy nhận xét cách giải này của tôi đã tối ưu chưa?"*.
-
-    <h3>2. Phương pháp "Double Check" (Kiểm chứng kép)</h3>
-    Đây là nguyên tắc sống còn khi làm việc với AI:
-    * **Luôn hoài nghi lành mạnh:** Coi AI là một thực tập sinh nhiệt tình nhưng hay mắc lỗi.
-    * **Xác thực thông tin:** Trước khi tiếp nhận bất cứ tri thức, số liệu hay sự kiện lịch sử nào từ AI, hãy nhắc nhở bản thân **BẮT BUỘC** phải đối chiếu lại với Sách giáo khoa (SGK) hoặc các trang báo, tài liệu chính thống đáng tin cậy.
-
-    <h3>3. Quy trình làm việc hiệu quả</h3>
-    * **Kết hợp AI và Con người:** Sử dụng AI cho các tác vụ lặp lại, tìm kiếm thông tin, lên dàn ý (chiếm 80% thời gian), và dành trọn vẹn trí tuệ của bạn cho việc ra quyết định, sáng tạo nội dung cốt lõi và kiểm duyệt (20% giá trị quan trọng nhất).
-    `
+    content: `<h3>1. Tư duy làm chủ</h3>
+    * **Không sao chép:** Dùng AI để gợi ý, không phải làm thay.
+    <h3>2. Double Check (Kiểm chứng)**</h3>
+    * **Luôn đối chiếu:** So sánh đáp án AI với SGK.
+    <h3>3. Quy trình 80/20</h3>
+    * Dùng AI cho việc tìm kiếm (80%), dành trí tuệ cho việc ra quyết định (20%).`
   },
   'meo-vat': {
-    title: '💡 Mẹo vặt (Prompt Engineering) từ A-Z',
-    content: `
-    <h3>1. Role Prompting (Gán vai trò chuyên gia)</h3>
-    Kỹ thuật này giúp câu trả lời của AI có chiều sâu và đúng ngữ cảnh hơn:
-    * *"Hãy đóng vai một giáo viên Vật Lý vui tính, giải thích Định luật Newton sao cho học sinh lớp 10 dễ hiểu nhất."*
-    * *"Đóng vai nhà tuyển dụng khó tính, hãy phỏng vấn thử tôi cho vị trí thành viên CLB Truyền thông."*
-
-    <h3>2. Chain of Thought (Chuỗi suy nghĩ logic)</h3>
-    Giúp AI thông minh hơn gấp nhiều lần với các bài toán phức tạp:
-    * Thêm câu thần chú vào cuối câu lệnh: *"Hãy suy nghĩ từng bước một (step-by-step) và giải thích logic ở mỗi bước đi."* Điều này buộc AI phải tư duy chậm lại, giảm thiểu sai sót tính toán.
-
-    <h3>3. Few-Shot Prompting (Học qua ví dụ)</h3>
-    AI học cực nhanh qua các mẫu có sẵn. Đừng chỉ ra lệnh, hãy đưa mẫu:
-    * *"Tôi muốn tóm tắt tin tức theo phong cách ngắn gọn này: [Dán Ví dụ A vào đây]. Hãy tóm tắt bài văn sau theo đúng phong cách đó cho tôi."*
-
-    <h3>4. Formatting (Định dạng đầu ra)</h3>
-    Tiết kiệm thời gian trình bày và đọc hiểu:
-    * *"Hãy so sánh Tế bào nhân sơ và nhân thực dưới dạng **Bảng so sánh** (gồm cột đặc điểm, giống nhau, khác nhau)."*
-    * *"Hãy liệt kê các ý chính của bài Lịch sử này dưới dạng **Bullet point** (gạch đầu dòng)."*
-
-    <h3>5. Phương pháp Sandwich (Bánh kẹp thịt)</h3>
-    Kỹ thuật đỉnh cao để tạo ra nội dung chất lượng cao nhất:
-    * **Lớp 1 (Vỏ bánh trên - Người):** Bạn đưa ra ý tưởng gốc, bối cảnh, và yêu cầu cụ thể. Đây là định hướng chiến lược.
-    * **Lớp 2 (Nhân thịt - AI):** AI thực hiện công việc nặng nhọc: triển khai nháp, sửa lỗi ngữ pháp, gợi ý từ vựng, mở rộng ý tưởng.
-    * **Lớp 3 (Vỏ bánh dưới - Người):** Bạn chỉnh sửa lại văn phong cho "có hồn", thêm cảm xúc cá nhân, trải nghiệm thực tế và kiểm duyệt độ chính xác cuối cùng.
-    `
+    title: '💡 Mẹo vặt (Prompt Engineering)',
+    content: `<h3>1. Gán vai trò</h3>
+    * "Đóng vai giáo viên Vật Lý giải thích định luật Newton..."
+    <h3>2. Step-by-step</h3>
+    * "Hãy suy nghĩ từng bước một và giải thích logic."
+    <h3>3. Định dạng đầu ra</h3>
+    * "Hãy kẻ bảng so sánh...", "Hãy liệt kê gạch đầu dòng..."`
   }
 };
 
@@ -743,44 +635,42 @@ const panelTitle = document.getElementById('panelTitle');
 const panelBody = document.getElementById('panelBody');
 
 function openPanel(id, element) {
-  document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
-  element.classList.add('active-tab');
+  // Reset style
+  document.querySelectorAll('.mini-card').forEach(c => {
+      c.style.background = '';
+      c.style.borderColor = 'transparent';
+      c.style.transform = '';
+  });
+  
+  // Active style
+  element.style.background = 'rgba(255,255,255,0.1)';
+  element.style.borderColor = 'var(--card-color)';
+  
   const data = contentData[id];
-
   if (!slidingPanel.classList.contains('is-open')) {
     updateContent(data);
     slidingPanel.classList.add('is-open');
     pushableContent.classList.add('is-pushed');
   } else {
     panelContentWrapper.classList.add('blur');
-    setTimeout(() => {
-      updateContent(data);
-      panelContentWrapper.classList.remove('blur');
-    }, 300);
+    setTimeout(() => { updateContent(data); panelContentWrapper.classList.remove('blur'); }, 300);
   }
 }
-
 function updateContent(data) {
   panelTitle.innerHTML = data.title;
-  let formatted = data.content
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br>');
+  let formatted = data.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
   panelBody.innerHTML = formatted;
 }
-
 function closePanel() {
-  document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active-tab'));
+  document.querySelectorAll('.mini-card').forEach(c => {
+      c.style.background = '';
+      c.style.borderColor = 'transparent';
+  });
   slidingPanel.classList.remove('is-open');
   pushableContent.classList.remove('is-pushed');
 }
+function handleOutsideClick() { if (pushableContent.classList.contains('is-pushed')) closePanel(); }
 
-function handleOutsideClick() {
-  if (pushableContent.classList.contains('is-pushed')) {
-    closePanel();
-  }
-}
-
-// --- THEME SWITCH ---
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 if (localStorage.getItem('theme') === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -789,7 +679,6 @@ if (localStorage.getItem('theme') === 'light') {
     document.documentElement.setAttribute('data-theme', 'dark');
     toggleSwitch.checked = true;
 }
-
 toggleSwitch.addEventListener('change', (e) => {
     const theme = e.target.checked ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
