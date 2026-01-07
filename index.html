@@ -12,21 +12,33 @@
 
 <style>
 /* =======================
-   1. VARIABLES & THEME
+   1. VARIABLES & THEME (NÂNG CẤP TỪ INDEX 14)
 ======================= */
 :root {
+  /* Core Colors */
   --bg-body: #0f172a;
   --bg-blob-1: #4f46e5;
   --bg-blob-2: #0ea5e9;
+  
+  /* Glassmorphism Colors - Refined */
   --glass-bg: rgba(30, 41, 59, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.05);
+  
+  /* Text Colors */
   --text-main: #e2e8f0;
   --text-heading: #f8fafc;
   --text-muted: #94a3b8;
+  
+  /* Panel Content Colors */
   --panel-bg: rgba(15, 23, 42, 0.95);
   --panel-text: #e2e8f0;
-  --accent-primary: #38bdf8;
+  
+  /* Accents */
+  --accent-primary: #38bdf8;   /* Cyan Neon */
+  --accent-secondary: #8b5cf6; /* Purple Neon */
+  --accent-glow: 0 0 20px rgba(56, 189, 248, 0.3);
+  
   --radius-xl: 24px;
   --radius-md: 16px;
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -36,20 +48,27 @@
   --bg-body: #f0f4f8;
   --bg-blob-1: #c4b5fd;
   --bg-blob-2: #bae6fd;
+  
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.6);
   --glass-highlight: rgba(255, 255, 255, 0.5);
+  
   --text-main: #334155;
   --text-heading: #0f172a;
   --text-muted: #64748b;
+  
+  /* LIGHT MODE PANEL FIX */
   --panel-bg: rgba(255, 255, 255, 0.95);
   --panel-text: #1e293b;
+  
   --accent-primary: #0284c7;
+  --accent-secondary: #7c3aed;
+  --accent-glow: 0 0 15px rgba(2, 132, 199, 0.15);
   --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
 /* =======================
-   2. GLOBAL STYLES
+   2. GLOBAL STYLES (SMOOTH SCROLL & BLOBS)
 ======================= */
 * { box-sizing: border-box; padding: 0; margin: 0; outline: none; -webkit-tap-highlight-color: transparent; }
 
@@ -58,10 +77,15 @@ body {
   background-color: var(--bg-body);
   color: var(--text-main);
   min-height: 100vh;
-  overflow-x: clip; 
+  overflow-x: clip; /* Fix lỗi cuộn ngang */
   position: relative;
   padding-bottom: 60px; 
 }
+
+/* Custom Scrollbar from Index 14 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
 body::before, body::after {
   content: ''; position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.6;
@@ -86,6 +110,7 @@ header {
   display: flex; justify-content: space-between; align-items: center; 
   position: sticky; top: 0; z-index: 1000;
   box-shadow: var(--shadow-glass);
+  transition: all 0.3s ease;
 }
 
 .panel-box { 
@@ -95,14 +120,17 @@ header {
   border-radius: var(--radius-xl); 
   padding: 24px; margin-bottom: 24px; 
   box-shadow: var(--shadow-glass);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.panel-box:hover { border-color: rgba(255,255,255,0.3); }
+.panel-box:hover { 
+    border-color: rgba(255,255,255,0.3); 
+    transform: translateY(-2px);
+}
 
 /* =======================
    4. LAYOUT
 ======================= */
-.school-logo { height: 60px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+.school-logo { height: 60px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); transition: all 0.3s ease; }
 .header-center { text-align: center; position: absolute; left: 50%; transform: translateX(-50%); width: 100%; pointer-events: none; }
 
 .main-title { 
@@ -111,8 +139,9 @@ header {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
   font-family: 'Orbitron', sans-serif; 
   text-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+  transition: all 0.3s ease;
 }
-.slogan { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; }
+.slogan { font-size: 12px; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 4px; transition: all 0.3s ease; }
 
 .main-grid {
   display: grid; grid-template-columns: 280px 1fr; gap: 24px;
@@ -132,7 +161,7 @@ header {
   pointer-events: auto; cursor: pointer;
 }
 
-/* Sliding Panel */
+/* Sliding Panel - Restored 3D Effect from Index 14 */
 .sliding-panel {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
   background: var(--panel-bg); color: var(--panel-text);
@@ -150,6 +179,7 @@ header {
     position: absolute; top: 0; left: 304px;
     width: calc(100% - 304px); max-width: 850px; height: 85vh; max-height: 800px;
     border-radius: var(--radius-xl); padding: 40px;
+    /* 3D Transform from Index 14 */
     transform: translateX(-50px) rotateY(10deg) scale(0.9);
     transform-style: preserve-3d; perspective: 1000px;
   }
@@ -164,14 +194,16 @@ header {
   font-size: 14px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px;
   display: flex; align-items: center; gap: 10px; 
 }
-.panel-header i { color: var(--accent-primary); }
+.panel-header i { color: var(--accent-primary); filter: drop-shadow(0 0 5px var(--accent-primary)); }
 
-/* --- NÂNG CẤP MENU CARD (LÝ THUYẾT) --- */
+/* --- MINI CARD (Hybrid: Color logic of 12 + Smoothness of 14) --- */
 .mini-card { 
   background: var(--glass-highlight); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; cursor: pointer; 
-  display: flex; align-items: center; gap: 15px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  display: flex; align-items: center; gap: 15px; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
   border: 1px solid transparent; position: relative; overflow: hidden;
 }
+/* Giữ nguyên logic màu của Index 12 nhưng thêm hiệu ứng hover của Index 14 */
 .mini-card::before {
     content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
     background: var(--card-color, #ccc); transition: 0.3s;
@@ -190,13 +222,13 @@ header {
 }
 .mini-card h4 { color: var(--text-heading); font-size: 15px; font-weight: 700; margin-bottom: 2px; }
 
-/* Các biến màu cho từng loại thẻ */
+/* Variables for Colors (Index 12 legacy) */
 .card-blue   { --card-color: #38bdf8; }
 .card-red    { --card-color: #f43f5e; }
 .card-green  { --card-color: #10b981; }
 .card-yellow { --card-color: #f59e0b; }
 
-/* --- NÂNG CẤP VISUAL BOX (TRANH TÀI) --- */
+/* --- VISUAL BOX (Giữ lại của Index 12 nhưng làm mượt hơn) --- */
 .visual-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
 }
@@ -238,14 +270,15 @@ header {
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Gallery */
+/* Gallery - Smooth transitions from Index 14 */
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
 .gallery-item {
     position: relative; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in;
     border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); aspect-ratio: 1/1; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; opacity: 0.9; }
-.gallery-item:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-primary); z-index: 10; transform: scale(1.05); }
+.gallery-item:hover { border-color: var(--accent-primary); box-shadow: var(--accent-glow); z-index: 10; transform: scale(1.02); }
 .gallery-item:hover img { opacity: 1; }
 
 /* Lightbox */
@@ -255,22 +288,35 @@ header {
     z-index: 9999; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
 }
 .lightbox-overlay.active { display: flex; opacity: 1; }
-.lightbox-img { max-width: 95vw; max-height: 80vh; border-radius: 8px; transition: transform 0.3s ease; cursor: zoom-in; }
+.lightbox-img { max-width: 95vw; max-height: 80vh; border-radius: 8px; transition: transform 0.3s ease; cursor: zoom-in; box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
 .lightbox-close-btn {
     position: absolute; top: 40px; right: 30px; font-size: 40px; color: white; cursor: pointer; z-index: 10000;
     width: 50px; height: 50px; text-align: center; line-height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%;
 }
 
-/* Content Panel */
-.content-title { font-size: 28px; font-weight: 700; color: var(--text-heading); margin-bottom: 20px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 20px; }
+/* Content Panel - Typography form Index 14 */
+.content-wrapper { transition: opacity 0.3s, filter 0.3s; max-width: 800px; margin: 0 auto; }
+.content-wrapper.blur { filter: blur(5px); opacity: 0.5; }
+
+.content-title { 
+    font-size: 28px; font-weight: 700; color: var(--text-heading); 
+    margin-bottom: 20px; border-bottom: 1px dashed var(--glass-border); 
+    padding-bottom: 20px; text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
 .content-body { font-size: 16px; line-height: 1.8; color: var(--panel-text); white-space: pre-line; }
 .content-body strong { color: var(--accent-primary); }
-.content-body h3 { margin-top: 30px; color: var(--accent-secondary); border-left: 3px solid var(--accent-secondary); padding-left: 10px; }
+.content-body h3 { margin-top: 30px; color: var(--accent-secondary); border-left: 3px solid var(--accent-secondary); padding-left: 10px; font-size: 19px; text-transform: uppercase; font-weight: 700;}
+.content-body ul { margin-left: 10px; list-style-type: none; }
+.content-body li { position: relative; margin-bottom: 12px; padding-left: 20px; }
+.content-body li::before { content: '•'; color: var(--accent-primary); position: absolute; left: 0; font-weight: bold; font-size: 18px; line-height: 1.6; }
+
 .btn-close-panel {
   position: absolute; top: 25px; right: 25px; width: 44px; height: 44px; background: rgba(255,255,255,0.1);
   border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--glass-border); 
+  transition: 0.3s;
 }
-.btn-close-panel:hover { background: #ef4444; color: white; }
+.btn-close-panel:hover { background: #ef4444; color: white; transform: rotate(90deg); }
 
 /* Social & Timeline */
 .social-banner { 
@@ -308,7 +354,7 @@ header {
 input:checked + .slider { background-color: var(--accent-primary); }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* Carousel Styles */
+/* Carousel Styles (Giữ nguyên của Index 12) */
 .carousel-section { max-width: 1400px; margin: 0 auto 40px; padding: 0 20px; }
 .carousel-wrapper {
     position: relative; overflow: hidden; border-radius: var(--radius-xl);
@@ -343,16 +389,21 @@ input:checked + .slider:before { transform: translateX(20px); }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s ease; }
 .dot.active { width: 24px; border-radius: 10px; background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary); }
 
-/* Responsive */
+/* Responsive from Index 14 */
 @media (max-width: 1024px) {
-  .main-grid { grid-template-columns: 1fr; }
+  .main-grid { grid-template-columns: 1fr; margin: 20px auto; }
   .menu-grid-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .sliding-panel { width: 100%; max-width: none; border-radius: 0; border-left: none; }
   .pushable-content { grid-template-columns: 1fr; }
+  .pushable-content.is-pushed { transform: scale(0.95); }
 }
 @media (max-width: 768px) {
-  header { padding: 0 15px; } .school-logo { height: 35px; } .main-title { font-size: 18px; } .slogan { display: none; }
+  header { height: 65px; flex-direction: row; padding: 0 15px; justify-content: space-between; gap: 10px; }
+  .header-center { position: static; transform: none; flex: 1; text-align: left; padding-left: 10px; }
+  .school-logo { height: 35px; } .main-title { font-size: 18px; margin-bottom: 0; } .slogan { display: none; }
   .gallery-grid { gap: 8px; }
+  .panel-box { padding: 16px; border-radius: 16px; margin-bottom: 16px; }
+  .sliding-panel { padding: 20px; padding-top: 70px; }
 }
 </style>
 </head>
@@ -475,7 +526,7 @@ input:checked + .slider:before { transform: translateX(20px); }
             <div style="font-weight:700; color:var(--text-heading); margin-bottom:5px;">
                 Sinh hoạt AMF (AI mastering forum) nâng cao nhận thức và điều chỉnh hành vi sử dụng trí tuệ nhân tạo (AI) trong học tập của học sinh Trung học phổ thông
             </div>
-            <a href="KHHD CLB.docx" target="_blank" class="btn-download-doc">
+            <a href="https://docs.google.com/document/d/1uOYlltjdmKAgSDTg2ZL_cwKX_3ecYxWdub4-fZfoGlw/edit?tab=t.0" target="_blank" class="btn-download-doc">
                 <i class="fa-solid fa-file-word"></i> Xem chi tiết kế hoạch
             </a>
         </div>
@@ -586,45 +637,97 @@ lightboxImg.addEventListener('click', function(e) {
     this.style.transform = `scale(${currentScale})`;
 });
 
+// --- NỘI DUNG CHI TIẾT (ĐÃ ĐƯỢC NÂNG CẤP DÀI VÀ CỤ THỂ CHO TỪNG MÔN) ---
 const contentData = {
   'uu-diem': {
-    title: '⚡ Ưu điểm vượt trội của AI trong học tập',
-    content: `<h3>1. Gia sư 24/7 & Giải pháp tức thì</h3>
-    * **Giải đáp thắc mắc mọi lúc:** Hỏi là có đáp án ngay.
-    * **Ứng dụng thực tiễn:** OCR giải Toán/Lý/Hóa qua ảnh.
-    <h3>2. Kho tàng tri thức</h3>
-    * **Truy cập vô tận:** Tổng hợp thông tin ngắn gọn, bỏ qua bước lọc Google.
-    * **Trực quan hóa:** Tạo sơ đồ tư duy, hình ảnh minh họa.
-    <h3>3. Cá nhân hóa</h3>
-    * **Lộ trình riêng:** Đề xuất cách học dựa trên điểm mạnh/yếu.
-    * **Ôn thi thông minh:** Tạo đề thi thử sát thực tế.`
+    title: '⚡ 1. Ưu điểm vượt trội của AI trong Tự học',
+    content: `<h3>1. Gia sư 24/7 - Giải đáp mọi môn học</h3>
+    AI đóng vai trò như một gia sư riêng, không bao giờ mệt mỏi và luôn sẵn sàng 24/7. Điều này cực kỳ quan trọng khi bạn tự học đêm khuya hoặc gặp bài khó mà không thể hỏi thầy cô ngay lập tức.
+    
+    <ul>
+    <li><strong>Môn Toán (Đại số & Hình học):</strong> Thay vì chỉ chép đáp án cuối cùng, AI có thể giải thích từng bước biến đổi (step-by-step). Ví dụ: Bạn chụp ảnh một bài Giải tích (tích phân), AI sẽ giải thích tại sao lại đặt ẩn phụ u = sin(x) mà không phải là cos(x), giúp bạn hiểu bản chất vấn đề.</li>
+    <li><strong>Môn Tiếng Anh (IELTS/TOEIC):</strong> AI là công cụ check ngữ pháp và từ vựng siêu cấp. Bạn có thể viết một đoạn essay, yêu cầu AI: "Hãy sửa lỗi ngữ pháp và gợi ý các từ vựng C1 để câu văn sang hơn". Nó cũng có thể đóng vai giám khảo Speaking để luyện tập hội thoại.</li>
+    <li><strong>Môn Ngữ Văn:</strong> Bí ý tưởng? AI là vua "Brainstorming". Ví dụ: Khi làm bài nghị luận xã hội về "Lòng dũng cảm", hãy nhờ AI liệt kê 5 dẫn chứng thực tế mới nhất năm 2024 để bài viết có tính thời sự, thay vì dùng lại những ví dụ cũ mèm trong sách văn mẫu.</li>
+    </ul>
+
+    <h3>2. Cá nhân hóa lộ trình học (Personalized Learning)</h3>
+    Mỗi người có một tốc độ tiếp thu khác nhau, và giáo dục trên lớp khó đáp ứng điều đó. AI thì khác:
+    <ul>
+    <li><strong>Lấp lỗ hổng kiến thức:</strong> Nếu bạn yếu phần "Dao động cơ" trong Vật Lý, hãy yêu cầu AI: "Tôi mất gốc phần con lắc lò xo, hãy tạo cho tôi lộ trình học lại trong 3 ngày, bắt đầu từ lý thuyết cơ bản đến bài tập vận dụng cao".</li>
+    <li><strong>Đề thi thử không giới hạn:</strong> Bạn có thể yêu cầu AI tạo ra 50 câu trắc nghiệm Lịch sử chỉ tập trung vào giai đoạn 1945-1954 để ôn thi Học kỳ, kèm lời giải chi tiết cho từng câu sai.</li>
+    </ul>
+
+    <h3>3. Trực quan hóa & Tổng hợp kiến thức</h3>
+    <ul>
+    <li><strong>Sơ đồ tư duy (Mindmap):</strong> Học Sinh học hay Địa lý với quá nhiều chữ? Hãy copy đoạn văn bản vào và bảo AI: "Hãy tóm tắt nội dung này dưới dạng danh sách ý chính để tôi vẽ sơ đồ tư duy".</li>
+    <li><strong>Giải thích đơn giản:</strong> Gặp khái niệm Triết học Mác-Lênin khó hiểu? Hãy dùng câu lệnh: "Giải thích khái niệm 'Vật chất quyết định ý thức' như thể đang giảng cho một học sinh lớp 5 nghe". Bạn sẽ bất ngờ vì độ dễ hiểu của nó.</li>
+    </ul>`
   },
   'han-che': {
-    title: '🛡️ Hạn chế & Cạm bẫy cần tránh',
-    content: `<h3>1. Ảo giác AI</h3>
-    * **Thông tin sai lệch:** AI có thể bịa đặt thông tin rất thuyết phục.
-    <h3>2. Sự phụ thuộc</h3>
-    * **Lười tư duy:** Ỷ lại vào AI làm mất khả năng giải quyết vấn đề.
-    <h3>3. Đạo đức</h3>
-    * **Gian lận:** Dùng AI làm bài hộ là vi phạm đạo đức học đường.`
+    title: '🛡️ 2. Hạn chế & Cạm bẫy "chết người" cần tránh',
+    content: `<h3>1. Ảo giác AI (AI Hallucinations) - Khi máy cũng "chém gió"</h3>
+    Đừng tin AI 100%. AI hoạt động theo cơ chế dự đoán từ ngữ tiếp theo, không phải là cơ sở dữ liệu chân lý. Nó có thể bịa đặt thông tin rất thuyết phục.
+    <ul>
+    <li><strong>Môn Văn/Sử:</strong> AI rất hay bịa dẫn chứng hoặc sai lệch mốc thời gian lịch sử Việt Nam do dữ liệu huấn luyện tiếng Việt còn hạn chế. Ví dụ: Nó có thể gán sai tác giả của một bài thơ hoặc bịa ra một câu nói của danh nhân không hề tồn tại.</li>
+    <li><strong>Môn Toán/Lý:</strong> AI giỏi về logic ngôn ngữ hơn là tính toán số học phức tạp. Đôi khi nó viết công thức đúng, nhưng bước cộng trừ nhân chia cuối cùng lại ra kết quả sai bét. Luôn phải bấm máy tính cầm tay để kiểm tra lại.</li>
+    </ul>
+
+    <h3>2. Sự phụ thuộc & Thui chột tư duy (Dependency)</h3>
+    Đây là "căn bệnh" nguy hiểm nhất hiện nay của học sinh:
+    <ul>
+    <li><strong>Hội chứng "Copy-Paste":</strong> Khi làm bài tập về nhà, thay vì suy nghĩ, bạn paste đề bài vào AI và chép nguyên xi đáp án. Kết quả: Bạn được 10 điểm bài tập, nhưng trong phòng thi không có AI, bạn hoàn toàn "đứng hình" vì não bộ đã mất khả năng tư duy độc lập.</li>
+    <li><strong>Mất bản sắc cá nhân (Trong môn Văn/Anh):</strong> Bài viết do AI tạo ra thường có văn phong "trôi chảy nhưng vô hồn". Nếu lạm dụng, bạn sẽ mất đi giọng văn riêng, cảm xúc thật và sự sáng tạo - những thứ cốt lõi để đạt điểm cao trong môn Ngữ văn.</li>
+    </ul>
+
+    <h3>3. Vấn đề đạo đức học đường</h3>
+    <ul>
+    <li>Dùng AI để làm bài kiểm tra, viết bài luận nộp thầy cô mà không trích dẫn là hành vi gian lận (Plagiarism). Các công cụ check đạo văn hiện nay đang ngày càng thông minh hơn và có thể phát hiện ra văn phong của AI.</li>
+    </ul>`
   },
   'kinh-nghiem': {
-    title: '📖 Kinh nghiệm sử dụng AI khôn ngoan',
-    content: `<h3>1. Tư duy làm chủ</h3>
-    * **Không sao chép:** Dùng AI để gợi ý, không phải làm thay.
-    <h3>2. Double Check (Kiểm chứng)**</h3>
-    * **Luôn đối chiếu:** So sánh đáp án AI với SGK.
-    <h3>3. Quy trình 80/20</h3>
-    * Dùng AI cho việc tìm kiếm (80%), dành trí tuệ cho việc ra quyết định (20%).`
+    title: '📖 3. Quy trình sử dụng AI chuẩn cho dân chuyên',
+    content: `<h3>Phương pháp "Sandwich" (Bánh kẹp thịt)</h3>
+    Để sử dụng AI hiệu quả mà không bị phụ thuộc, hãy áp dụng quy trình 3 bước sau cho mọi môn học:
+    
+    <ul>
+    <li><strong>Lớp vỏ 1 (Human - Bạn):</strong> Tự mình đọc đề, brainstorm ý tưởng và lập dàn ý sơ bộ. Ví dụ làm văn: Tự gạch đầu dòng 3 luận điểm chính mình muốn viết. Đừng để AI định hướng tư duy ngay từ đầu.</li>
+    <li><strong>Lớp nhân (AI - Hỗ trợ):</strong> Dùng AI để mở rộng ý tưởng đó. "Với luận điểm này, hãy gợi ý cho tôi 2 ví dụ thực tế". Hoặc dùng AI để sửa lỗi ngữ pháp, làm mượt câu văn. AI đóng vai trò là trợ lý, không phải người làm chính.</li>
+    <li><strong>Lớp vỏ 2 (Human - Bạn chốt):</strong> Đọc lại sản phẩm của AI, kiểm chứng thông tin (Fact-check) với sách giáo khoa (SGK). Chỉnh sửa lại văn phong cho đúng "chất" của mình. Đây là bước quan trọng nhất để biến kiến thức của AI thành của bạn.</li>
+    </ul>
+
+    <h3>Quy tắc 80/20 trong ôn thi</h3>
+    <ul>
+    <li><strong>80% thời gian (Dùng não):</strong> Tập trung vào việc hiểu bản chất, tư duy logic, học thuộc các công thức cốt lõi trong SGK.</li>
+    <li><strong>20% thời gian (Dùng AI):</strong> Dùng để tổng hợp kiến thức, tạo đề thi thử (Mock test) và giải đáp các thắc mắc vụn vặt. Đừng đảo ngược tỉ lệ này!</li>
+    </ul>
+
+    <h3>Kiểm chứng chéo (Cross-check)</h3>
+    <ul>
+    <li>Tuyệt đối không dùng AI làm nguồn trích dẫn duy nhất. Hãy đối chiếu công thức Lý/Hóa với SGK. Đối chiếu sự kiện Sử với tài liệu chính thống. Coi AI như một người bạn học giỏi nhưng hay... ẩu.</li>
+    </ul>`
   },
   'meo-vat': {
-    title: '💡 Mẹo vặt (Prompt Engineering)',
-    content: `<h3>1. Gán vai trò</h3>
-    * "Đóng vai giáo viên Vật Lý giải thích định luật Newton..."
-    <h3>2. Step-by-step</h3>
-    * "Hãy suy nghĩ từng bước một và giải thích logic."
-    <h3>3. Định dạng đầu ra</h3>
-    * "Hãy kẻ bảng so sánh...", "Hãy liệt kê gạch đầu dòng..."`
+    title: '💡 4. Mẹo vặt (Prompt Engineering) - Ra lệnh cho chuẩn',
+    content: `<h3>Kỹ thuật "Nhập vai" (Role-playing)</h3>
+    AI sẽ thông minh hơn nếu bạn gán cho nó một vai trò cụ thể.
+    <ul>
+    <li><strong>Môn Tiếng Anh:</strong> Thay vì "Dịch đoạn này", hãy viết: "Đóng vai một biên dịch viên chuyên nghiệp, hãy dịch đoạn văn này sang tiếng Việt sao cho văn phong tự nhiên, phù hợp với ngữ cảnh báo chí".</li>
+    <li><strong>Môn Sinh học:</strong> "Đóng vai một giáo sư Sinh học, hãy giải thích cơ chế Di truyền học của Menđen cho một học sinh lớp 12 đang ôn thi đại học, tập trung vào các từ khóa hay xuất hiện trong đề thi".</li>
+    </ul>
+
+    <h3>Kỹ thuật "Socratic Method" (Gợi mở tư duy)</h3>
+    Thay vì xin đáp án, hãy xin gợi ý. Đây là cách học của thủ khoa.
+    <ul>
+    <li><strong>Prompt mẫu:</strong> "Tôi đang giải bài toán hình học không gian này [Mô tả bài]. Đừng đưa ra đáp án ngay. Hãy gợi ý cho tôi biết nên kẻ thêm đường phụ nào để chứng minh vuông góc?".</li>
+    <li>Cách này ép não bộ bạn phải hoạt động, AI chỉ đóng vai trò người gợi mở (hint).</li>
+    </ul>
+
+    <h3>Kỹ thuật "Định dạng đầu ra" (Format Output)</h3>
+    Giúp bạn tiết kiệm thời gian đọc hiểu tài liệu dài dòng.
+    <ul>
+    <li><strong>So sánh:</strong> "Hãy so sánh Cách mạng tháng 8 và Cách mạng tháng 10 Nga dưới dạng Bảng (Table). Cột 1 là Tiêu chí, Cột 2 là CM tháng 8, Cột 3 là CM tháng 10 Nga".</li>
+    <li><strong>Tóm tắt:</strong> "Hãy tóm tắt văn bản 'Vợ chồng A Phủ' dưới dạng danh sách gạch đầu dòng (Bullet points), làm nổi bật diễn biến tâm lý nhân vật Mị trong đêm tình mùa xuân".</li>
+    </ul>`
   }
 };
 
@@ -658,6 +761,7 @@ function openPanel(id, element) {
 }
 function updateContent(data) {
   panelTitle.innerHTML = data.title;
+  // Xử lý xuống dòng và in đậm
   let formatted = data.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
   panelBody.innerHTML = formatted;
 }
