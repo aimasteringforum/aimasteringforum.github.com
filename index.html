@@ -270,6 +270,58 @@ header {
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
+/* --- MỚI: STYLES CHO MỤC CUỘC THI CŨ --- */
+.old-quizzes-container {
+    margin-top: 15px; 
+    background: rgba(255, 255, 255, 0.03); 
+    border-radius: var(--radius-md); 
+    padding: 12px; 
+    border: 1px solid var(--glass-border);
+}
+
+.old-quizzes-header {
+    font-size: 11px; 
+    font-weight: 800; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+    display: flex; 
+    align-items: center; 
+    gap: 5px;
+}
+
+.old-quizzes-header i {
+    color: var(--accent-secondary);
+}
+
+.old-quizzes-grid {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px;
+}
+
+.old-quiz-btn {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    background: var(--glass-highlight);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.old-quiz-btn:hover {
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
 /* Gallery - Smooth transitions from Index 14 */
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
 .gallery-item {
@@ -476,6 +528,18 @@ input:checked + .slider:before { transform: translateX(20px); }
                 </div>
             </div>
         </div>
+        
+        <div class="old-quizzes-container">
+            <div class="old-quizzes-header">
+                <i class="fa-solid fa-clock-rotate-left"></i> Tham gia cuộc thi cũ
+            </div>
+            <div class="old-quizzes-grid">
+                <a href="https://wayground.com/join/quiz/694a3042e6f90ed46c69deb1/start?studentShare=true" target="_blank" class="old-quiz-btn">Tiến trình 1</a>
+                <a href="https://wayground.com/join?gc=03896550&source=liveDashboard" target="_blank" class="old-quiz-btn">Tiến trình 2</a>
+                <a href="https://wayground.com/join?gc=40057318&source=liveDashboard" target="_blank" class="old-quiz-btn">Tiến trình 3</a>
+                <a href="https://wayground.com/join?gc=08484838&source=liveDashboard" target="_blank" class="old-quiz-btn">Tiến trình 4</a>
+            </div>
+        </div>
 
       </div>
     </div>
@@ -532,19 +596,19 @@ input:checked + .slider:before { transform: translateX(20px); }
         </div>
 
         <div class="timeline-item">
-            <span class="time-badge">20 - 29/12/2025</span>
+            <span class="time-badge">9 - 12/2025</span>
             <div style="font-weight:700; color:var(--text-heading)">Cuộc thi Poster lần 1</div>
             <div style="font-size:13px; color:var(--text-muted)">Đề tài: "AI và Tri thức"</div>
         </div>
 
         <div class="timeline-item">
-            <span class="time-badge">25 - 29/12/2025</span>
+            <span class="time-badge">9 - 12/2025</span>
             <div style="font-weight:700; color:var(--text-heading)">Khảo sát kiến thức</div>
             <div style="font-size:13px; color:var(--text-muted)">Tổ chức khảo sát chuyên sâu</div>
         </div>
 
         <div class="timeline-item">
-            <span class="time-badge">30 - 31/12/2025</span>
+            <span class="time-badge">Năm học 2025-2026</span>
             <div style="font-weight:700; color:var(--text-heading)">Công bố & Tuyên truyền</div>
             <div style="font-size:13px; color:var(--text-muted)">Chọn poster thắng giải</div>
         </div>
